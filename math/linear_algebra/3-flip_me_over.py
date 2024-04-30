@@ -4,4 +4,4 @@
 
 def matrix_transpose(matrix):
     """ This is also documented """
-    print(list(map(list, zip(*matrix))))
+    return(list(map(list, zip(*matrix))))
