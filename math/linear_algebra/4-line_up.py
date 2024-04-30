@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''Documentation'''
 
+
 def add_arrays(arr1, arr2):
     """Documentation"""
     if len(arr1) != len(arr2):
