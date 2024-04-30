@@ -3,7 +3,9 @@
 
 
 def matrix_shape(matrix):
-    """more"""
+    """
+        a lot more documentaion
+    """
     def ishape(matrix):
         """more more"""
         shapes = [ishape(x) if isinstance(x, list) else [] for x in matrix]
