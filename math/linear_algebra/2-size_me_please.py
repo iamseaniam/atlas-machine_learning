@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """documentaion"""
-    
+
+
 def matrix_shape(matrix):
     """more"""
     def ishape(matrix):
