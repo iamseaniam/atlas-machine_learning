@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
+"""documentaion"""
+    
 def matrix_shape(matrix):
+    """more"""
     def ishape(matrix):
+        """more more"""
         shapes = [ishape(x) if isinstance(x, list) else [] for x in matrix]
         # iterates over each element x in the matrix.
     # if x is a list, it recursivly calls (ishape(x)) to calculate its shape.
