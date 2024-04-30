@@ -9,5 +9,5 @@ def matrix_shape(matrix):
         # appends the length of current matrix to the shape list. it does it to complete shape info by adding dimension of matrix 
         return shape
         # returns shape of matrix
-    return tuple(reversed(ishape(matrix)))
-    # revereses it to be correct format as in row col and converts it to a tuple
+    return list(reversed(ishape(matrix)))
+    # revereses it to be correct format as in row col and converts it to a list
