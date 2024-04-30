@@ -4,10 +4,11 @@
 
 def matrix_transpose(matrix):
     """ This is also documented """
-    def ishape(matrix):
-        """more more"""
-        shapes = [ishape(x) if isinstance(x, list) else [] for x in matrix]
-        shape = shapes[0]
-        shape.append(len(matrix))
-        return shape
-    return list(ishape(matrix))
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    transposed = [[0 for _ in range(rows)] for _ in range(cols)]
+
+    for i in range(rows):
+        for j in range(cols):
+            transposed[j][i] = matrix
