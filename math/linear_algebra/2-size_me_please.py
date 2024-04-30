@@ -1,4 +1,3 @@
 #!/usr/bin/env python3
-
-def maxtrix_shape(maxtrix):
-    maxtrix_shape.shape(maxtrix)
+def matrix_shape(matrix):
+    print(len(matrix), len(matrix[0]))
