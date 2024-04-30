@@ -3,7 +3,7 @@ def matrix_shape(matrix):
     def ishape(matrix):
         shapes = [ishape(x) if isinstance(x, list) else [] for x in matrix]
         # iterates over each element x in the matrix.
-        # if x is a list, it recursivly calls (ishape(x)) to calculate its shape.
+    # if x is a list, it recursivly calls (ishape(x)) to calculate its shape.
         # if not, returns a empty list
         shape = shapes[0]
         # assigns the first shape in shapes list to the var shape.
