@@ -9,4 +9,4 @@ def matrix_transpose(matrix):
     >>> matrix_transpose(matrix)
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
     """
-    return list(map(list,zip(*matrix)))
+    return list(map(list, zip(*matrix)))
