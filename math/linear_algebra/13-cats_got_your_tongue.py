@@ -5,5 +5,6 @@ import numpy as np
 
 def np_cat(mat1, mat2, axis=0):
     """muahhaha"""
-    New_Concatenated_Matrix = np.concatenate((mat1, mat2), axis = 0)
-    return New_Concatenated_Matrix
+    if axis == 0:
+        New_Concatenated_Matrix = np.concatenate((mat1, mat2), axis=0)
+        return New_Concatenated_Matrix
