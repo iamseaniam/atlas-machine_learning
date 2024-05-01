@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
-"""documented"""
+"""documentation"""
 
 
 def np_matmul(mat1, mat2):
-    """documented"""
+    """documentation"""
     results = np.dot(mat1, mat2)
     return (results)

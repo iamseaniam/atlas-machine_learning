@@ -3,5 +3,5 @@
 
 
 def np_elementwise(mat1, mat2):
-    """Documentation"""
+    """documentation"""
     
