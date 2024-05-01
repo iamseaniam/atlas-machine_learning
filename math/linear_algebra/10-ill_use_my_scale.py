@@ -4,4 +4,4 @@
 
 def np_shape(matrix):
     """Documentation"""
-    return(matrix.shape)
+    return matrix.shape
