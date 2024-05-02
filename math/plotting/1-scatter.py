@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 """
         _summary_
-        it is summarized
+        it is summarizedyvygygygygygygygygygygygygygygygygygyg
 """
 
 
 def scatter():
     """
         _summary_
-        it is summarized
+        it is summarizedygygygygygygygygygygygy
     """
     mean = [69, 0]
     cov = [[15, 8], [8, 15]]
