@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 import numpy as np
 import matplotlib.pyplot as plt
+"""
+        _summary_
+        it is summarized
+"""
+
 
 def scatter():
-
+    """
+        _summary_
+        it is summarized
+    """
     mean = [69, 0]
     cov = [[15, 8], [8, 15]]
     np.random.seed(5)
