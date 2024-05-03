@@ -6,18 +6,21 @@ import matplotlib.pyplot as plt
 
 
 def frequency():
-    """Documentation"""
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
     plt.figure(figsize=(6.4, 4.8))
 
-    # Plotting histogram
-    plt.hist(student_grades, bins=np.arange(0, 101, 10), edgecolor='black')
+    # plotting histogram
+    bins = np.arange(0, 101, 10)
+    plt.xlim(0, 100)
+    plt.xticks(np.arange(0, 101, 10))
+    plt.ylim(0, 30)
+    plt.hist(student_grades, bins=bins, edgecolor='black')
+    
+    # labels and titles
+    plt.xlabel('Grades')
+    plt.ylabel('Number of Students')
+    plt.title('Project A')
 
-    # Labels and titles
-    plt.xlabel("Grades")
-    plt.ylabel("Number of Students")
-    plt.title("Project A")
-
-    # Display plot
+    # displaying histogram
     plt.show()
