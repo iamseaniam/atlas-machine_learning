@@ -10,8 +10,7 @@ def bars():
     fruit = np.random.randint(0, 20, (4,3))
     plt.figure(figsize=(6.4, 4.8))
 
-
-    # Define colors, fruits, people
+    # Define colors, fruits, and people
     colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
     fruits = ['Apples', 'Bananas', 'Oranges', 'Peaches']
     people = ['Farrah', 'Fred', 'Felicia']
@@ -25,10 +24,11 @@ def bars():
             bottom=bottom,
             color=colors[i],
             label=fruits[i],
-            width=0.5)
+            width=0.5
+        )
         bottom += fruit[i]
 
-    # lengend, label. title and ticks
+    # Legend, label, title, and ticks
     plt.legend()
     plt.ylabel('Quantity of Fruit')
     plt.title('Number of Fruit per Person')
