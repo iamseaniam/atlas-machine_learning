@@ -12,7 +12,7 @@ def frequency():
     plt.figure(figsize=(6.4, 4.8))
 
     # Plotting histogram
-    plt.hist(student_grades, bins=10, edgecolor='black')
+    plt.hist(student_grades, bins=np.arange(0, 101, 10), edgecolor='black')
 
     # Labels and titles
     plt.xlabel("Grades")
