@@ -21,4 +21,5 @@ def two():
     plt.ylim(0, 1)
     plt.plot(x, y1, color = "red", linestyle='dashed', label = "C-14")
     plt.plot(x, y2, label = "Ra-226", color = "green")
+    plt.legend()
     plt.show()
