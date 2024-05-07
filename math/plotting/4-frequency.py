@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+"""Also Documented for sissles"""
 import numpy as np
 import matplotlib.pyplot as plt
-"""Documentation"""
 
 
 def frequency():
+    """Also Documented for sissles"""
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
     plt.figure(figsize=(6.4, 4.8))

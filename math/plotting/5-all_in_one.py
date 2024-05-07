@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""Also Documented for sissles"""
 import numpy as np
 import matplotlib.pyplot as plt
-"""Documentation that does not work at all"""
 
 
 def all_in_one():

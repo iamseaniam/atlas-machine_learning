@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
+"""Also Documented for sissles"""
 import numpy as np
 import matplotlib.pyplot as plt
-"""
-        _summary_
-        it is summarizedyvygygygygygygygygygygygygygygygygygyg
-"""
 
 
 def scatter():

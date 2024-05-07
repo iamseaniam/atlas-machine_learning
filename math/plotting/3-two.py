@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""Also Documented for sissles"""
 import numpy as np
 import matplotlib.pyplot as plt
-"""MUHAUHAHAHAUHAHU i like turtles and stuff"""
 
 
 def two():

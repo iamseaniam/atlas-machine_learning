@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""Also Documented for sissles"""
 import numpy as np
 import matplotlib.pyplot as plt
-"""documentation big balls . org"""
 
 
 def bars():
