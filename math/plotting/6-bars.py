@@ -12,7 +12,7 @@ def bars():
 
     # Define colors, fruits, and people
     colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
-    fruits = ['Apples', 'Bananas', 'Oranges', 'Peaches']
+    fruits = ['apples', 'bananas', 'oranges', 'peaches']
     people = ['Farrah', 'Fred', 'Felicia']
 
     # Plot stacked bars
