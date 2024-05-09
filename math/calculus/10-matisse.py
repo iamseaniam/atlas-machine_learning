@@ -3,12 +3,14 @@
 
 
 def poly_derivative(poly):
-    """DOCumentation"""
-    if not isinstance(poly, list) or len(poly) == 0:
+    """Hello world turtles"""
+    if not isinstance(poly, list) or not all(isinstance(coef, (int, float)) for coef in poly):
         return None
-    derivative = [i * coeff for i, coeff in enumerate(poly)]
-    derivative = [coeff - 1 for coeff in derivative]
-    if derivative == [0]:
+    n = len(poly)
+    if n == 0:
+        return None
+    derivative = [coef * i for i, coef in enumerate(poly)][1:]
+    if all(coef == 0 for coef in derivative):
         return [0]
 
     return derivative
