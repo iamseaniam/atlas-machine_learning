@@ -16,21 +16,33 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = sum(data) / len(data)
-
             if self.lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
+
 
     def pmf(self, k):
         """Bull lone e"""
         k = int(k)
-
         if k < 0:
             return 0
         else:
             e = 2.7182818285
             factorial_k = 1
-
             for i in range(1, k + 1):
                 factorial_k *= i
-
             return (e ** -self.lambtha * (self.lambtha ** k)) / factorial_k
+
+
+    def cdf(self, k):
+        k = int(k)
+        if k < 0:
+            return 0
+        else:
+            e = 2.7182818285
+            cumulative_probability = 0
+            factorial_i = 1
+            for i in range(0, k + 1):
+                calc = (e ** -self.lambtha * (self.lambtha ** i)) / factorial_i
+                cumulative_probability += calc
+                factorial_i += (i + 1)
+            return cumulative_probability
