@@ -34,6 +34,7 @@ class Poisson:
 
 
     def cdf(self, k):
+        """Documented muffin man"""
         k = int(k)
         if k < 0:
             return 0
@@ -41,8 +42,8 @@ class Poisson:
             e = 2.7182818285
             cumulative_probability = 0
             factorial_i = 1
-            for i in range(0, k + 1):
-                calc = (e ** -self.lambtha * (self.lambtha ** factorial_i)) / factorial_i
-                cumulative_probability += calc
-                factorial_i += (i + 1)
-            return cumulative_probability
+        for i in range(0, k + 1):
+            calc = (e ** -self.lambtha * (self.lambtha ** i)) / factorial_i
+            cumulative_probability += calc
+            factorial_i += (i + 1)
+        return cumulative_probability
