@@ -42,7 +42,7 @@ class Poisson:
             factorial_i = 1
             for i in range(0, k + 1):
                 calc_pmf_I = (
-                    (e ** -self.lambtha * (self.lambtha ** i)) / 
+                    (e ** -self.lambtha * (self.lambtha ** i)) /
                     factorial_i
                 )
                 cumulative_probability += calc_pmf_I
