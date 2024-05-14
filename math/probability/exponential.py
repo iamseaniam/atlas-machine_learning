@@ -3,9 +3,8 @@
 
 
 class Exponential:
-    """This is a class, woah"""
     def __init__(self, data=None, lambtha=1.):
-        """This is not a class, woah"""
+        """Constructor for the Exponential distribution class."""
         if data is None:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
