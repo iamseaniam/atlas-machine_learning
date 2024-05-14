@@ -19,3 +19,18 @@ class Poisson:
 
             if self.lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
+
+    def pmf(self, k):
+        """Bull lone e"""
+        k = int(k)
+
+        if k < 0:
+            return 0
+        else:
+            e = 2.7182818285
+            factorial_k = 1
+
+            for i in range(1, k + 1):
+                factorial_k *= i
+
+            return (e ** -self.lambtha * (self.lambtha ** k)) / factorial_k
