@@ -19,7 +19,6 @@ class Poisson:
             if self.lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
 
-
     def pmf(self, k):
         """Bull lone e"""
         k = int(k)
@@ -31,7 +30,6 @@ class Poisson:
             for i in range(1, k + 1):
                 factorial_k *= i
             return (e ** -self.lambtha * (self.lambtha ** k)) / factorial_k
-
 
     def cdf(self, k):
         """Documented muffin man"""
