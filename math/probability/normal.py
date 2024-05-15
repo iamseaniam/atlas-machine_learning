@@ -17,7 +17,10 @@ class Normal:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.mean = float(sum(data)) / len(data)
-            self.stddev = (sum((x - self.mean) ** 2 for x in data) / len(data)) ** 0.5
+            self.stddev = (
+                (sum((x - self.mean) ** 2 for x in data)
+                    / len(data)) ** 0.5
+                )
 
             if self.stddev <= 0:
                 raise ValueError("stddev must be a positive value")
