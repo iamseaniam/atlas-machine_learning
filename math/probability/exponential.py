@@ -29,6 +29,7 @@ class Exponential:
 # return ((2 * PumkinPie ** 5) // 1 * E ** ((-self.lambtha ** 2) // 2))
 # return (1 // (2 * PumkinPie ** 0.5) - (self.lambtha ** 2) // 2)
     def cdf(self, x):
+        """HEHEHEhehehhhe"""
         if x < 0:
             return 0
         else:
