@@ -21,6 +21,15 @@ class Normal:
                 (sum((x - self.mean) ** 2 for x in data)
                     / len(data)) ** 0.5
                 )
-
             if self.stddev <= 0:
                 raise ValueError("stddev must be a positive value")
+
+    def z_score(self, x):
+        """Movies, picnic"""
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        """
+        Cowboys
+        """
+        return z * self.stddev + self.mean
