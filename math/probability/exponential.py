@@ -23,9 +23,8 @@ class Exponential:
         E = 2.7182818285
         if x >= 0:
             return self.lambtha * E ** (-self.lambtha * x)
-# return ((2 * PumkinPie ** 0.5) // 1 * E - ((self.lambtha ** 2) // 2)) # close but not there
-# return (((2 * PumkinPie) ** 0.5) // 1 * E ** ((-self.lambtha ** 2) // 2)) # smaller nummbers but not close
-# return (((1 // 2 * PumkinPie) ** 0.5) * (E ** (-self.lambtha ** 2 // 2))) output 0
-# return ((2 * PumkinPie ** 5) // 1 * E ** ((-self.lambtha ** 2) // 2)) numbers, but not close
-# return (1 // (2 * PumkinPie ** 0.5) - (self.lambtha ** 2) // 2) output 0
-
+# return ((2 * PumkinPie ** 0.5) // 1 * E - ((self.lambtha ** 2) // 2))
+# return (((2 * PumkinPie) ** 0.5) // 1 * E ** ((-self.lambtha ** 2) // 2))
+# return (((1 // 2 * PumkinPie) ** 0.5) * (E ** (-self.lambtha ** 2 // 2)))
+# return ((2 * PumkinPie ** 5) // 1 * E ** ((-self.lambtha ** 2) // 2))
+# return (1 // (2 * PumkinPie ** 0.5) - (self.lambtha ** 2) // 2)
