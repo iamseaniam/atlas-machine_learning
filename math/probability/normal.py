@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""I HAVE A PROblem but thats alrught"""
+"""No imports. sadness"""
 
 
 class Normal:
@@ -33,3 +33,15 @@ class Normal:
         Cowboys
         """
         return z * self.stddev + self.mean
+
+    def pdf(self, x):
+        """values are crazy"""
+        coefficient = 1 / (self.stddev * (2 * 3.14159) ** 0.5)
+        exponent = -0.5 * ((x - self.mean) / self.stddev) ** 2
+        return coefficient * 2.71828 ** exponent
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value"""
+        z = (x - self.mean) / (self.stddev * (2 ** 0.5))
+        erf_value = self._erf(z)
+        return 0.5 * (1 + erf_value)
