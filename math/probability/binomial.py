@@ -24,4 +24,12 @@ class Binomial:
             p = num_successes / n
             self.n = n
             self.p = p
-            
+
+    def pmf(self, k):
+        k = int(k)
+        if not 0 <= k <= self.n: 
+            return 0
+        binomial_coefficient = self._binomial_coefficient(self.n, k)
+        probability_of_success = self.p ** k
+        probability_of_failure = (1 - self.p) ** (self.n - k)
+        return binomial_coefficient * probability_of_success * probability_of_failure
