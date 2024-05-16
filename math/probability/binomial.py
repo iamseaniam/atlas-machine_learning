@@ -26,6 +26,7 @@ class Binomial:
             self.p = p
 
     def pmf(self, k):
+        """DIKJFHUSIHFIJFIJFIFS"""
         k = int(k)
         if not 0 <= k <= self.n: 
             return 0
