@@ -5,7 +5,7 @@ import numpy as np
 
 class Neuron:
     """This is documented"""
-    def __init__(self,nx):
+    def __init__(self, nx):
         """This is also documented"""
         if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
