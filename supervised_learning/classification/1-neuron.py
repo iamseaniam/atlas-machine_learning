@@ -4,6 +4,7 @@ import numpy as np
 
 
 class Neuron:
+    """dOCUmented muffin man"""
     def __init__(self, nx):
         """ Initialize the neuron with nx input features. """
         if not isinstance(nx, int):
