@@ -4,18 +4,28 @@ import numpy as np
 
 
 class Neuron:
-    """This is documented"""
     def __init__(self, nx):
-        """This is also documented"""
+        """ Initialize the neuron with nx input features. """
         if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
 
-        self.W = np.random.normal(size=(1, nx))
-        self.b = 0
-        self.A = 0
+        self.__W = np.random.normal(size=(1, nx))
+        self.__b = 0
+        self.__A = 0
 
-        self._W = np.random.normal(size=(1, nx))
-        self._b = 0
-        self._A = 0
+    @property
+    def W(self):
+        """ Getter for the weight vector __W. """
+        return self.__W
+
+    @property
+    def b(self):
+        """ Getter for the bias __b. """
+        return self.__b
+
+    @property
+    def A(self):
+        """ Getter for the activated output __A. """
+        return self.__A
