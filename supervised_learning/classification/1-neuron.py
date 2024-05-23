@@ -12,14 +12,18 @@ class Neuron:
         if nx < 1:
             raise ValueError("nx must be a positive integer")
 
+        self.W = np.random.normal(size=(1, nx))
+        self.b = 0
+        self.A = 0
+
         def get_W(self):
             """Getter for weight vector"""
-            return self.__W
+            pass
 
         def get_b(self):
             """Getter for bias"""
-            return self.__b
+            pass
 
         def get_A(self):
             """Getter for activated output"""
-            return self.__A
+            pass
