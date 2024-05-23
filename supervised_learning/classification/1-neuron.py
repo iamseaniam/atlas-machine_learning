@@ -18,12 +18,12 @@ class Neuron:
 
         def get_W(self):
             """Getter for weight vector"""
-            return self._W
+            return self.__W
 
         def get_b(self):
             """Getter for bias"""
-            return self._b
+            return self.__b
 
         def get_A(self):
             """Getter for activated output"""
-            return self._A
+            return self.__A
