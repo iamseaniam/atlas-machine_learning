@@ -39,7 +39,6 @@ class Neuron:
 
     def cost(self, Y, A):
         """DOCumentation"""
-        epsilon = 1.0000001
         m = Y.shape[1]
-        cost = -(1/m) * np.sum(Y * np.log(A) + (epsilon - A) * np.log(epsilon - A))
+        cost = -1 / m * np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
         return cost
