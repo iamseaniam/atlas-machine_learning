@@ -12,7 +12,7 @@ class Neuron:
         if nx < 1:
             raise ValueError("nx must be a positive integer")
 
-        self.__W = np.random.rand(size=(1, nx))
+        self.__W = np.random.normal(size=(1, nx))
         self.__b = 0
         self.__A = 0
 
@@ -30,3 +30,19 @@ class Neuron:
     def A(self):
         """ Getter for the activated output __A. """
         return self.__A
+
+    def forward_prop(self, X):
+        """Calculate the forward propagation of the neuron."""
+        Z = np.dot(self.__W, X) + self.__b
+        self.__A = 1 / (1 + np.exp(-Z))
+        return self.__A
+
+    def cost(self, Y, A):
+        """DOCumentation"""
+        m = Y.shape[1]
+        cost = -1 / m * np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
+        return cost
+
+    def evaluate(self, X, Y):
+        """DOCUMENTATION BABYYYYY"""
+        
