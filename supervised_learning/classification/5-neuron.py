@@ -50,7 +50,7 @@ class Neuron:
         cost = self.cost(Y, A)
         return predictions, cost
 
-    def gradient_desent(self, X, Y, A, alpha=0.05):
+    def gradient_descent(self, X, Y, A, alpha=0.05):
         """Documentation for sizzles"""
         m = X.shape[1]
         dZ = A - Y
