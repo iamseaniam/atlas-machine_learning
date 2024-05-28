@@ -62,13 +62,14 @@ class Neuron:
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """DOCUMENTATIONSJNDS"""
-        if iterations != int():
+        if not isinstance(iterations, int):
             raise TypeError ("iterations must be an integer")
-        elif iterations < 0:
+        if iterations < 1:
             raise TypeError("iterations must be a positive integer")
-        elif alpha != float():
+
+        if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
-        elif alpha < 0:
+        if alpha < 1:
             raise TypeError("alpha must be positive")
 
         for iterations in range(iterations):
