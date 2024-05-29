@@ -41,3 +41,4 @@ class DeepNeuralNetwork():
     @property
     def weights(self):
         """getter for weights"""
+        return self.__weights
