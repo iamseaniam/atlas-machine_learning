@@ -31,3 +31,11 @@ class DeepNeuralNetwork:
     def cost(self, Y, A):
         """DSOJDI(SJD)"""
         pass
+
+    def evaluate(self, X, Y):
+        """SODJKDOS"""
+        pass
+
+    def gradient_descent(self, Y, cache, alpha=0.05):
+        """SODJKDOS"""
+        pass

@@ -31,3 +31,22 @@ class DeepNeuralNetwork:
     def cost(self, Y, A):
         """DSOJDI(SJD)"""
         pass
+
+    def evaluate(self, X, Y):
+        """SODJKDOS"""
+        pass
+
+    def gradient_descent(self, Y, cache, alpha=0.05):
+        """SODJKDOS"""
+        pass
+
+    def train(self, X, Y, iterations=5000, alpha=0.05):
+        """SODJKDOS"""
+        if not isinstance(iterations, int):
+            raise TypeError("iterations must be an integer")
+        if iterations < 0:
+            raise ValueError("iterations must be a positive integer")
+        if not isinstance(alpha, float):
+            raise TypeError("alpha must be a float")
+        if alpha < 0:
+            raise ValueError("alpha must be positive")

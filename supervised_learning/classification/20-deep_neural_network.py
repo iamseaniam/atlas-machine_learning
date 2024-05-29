@@ -31,3 +31,7 @@ class DeepNeuralNetwork:
     def cost(self, Y, A):
         """DSOJDI(SJD)"""
         pass
+
+    def evaluate(self, X, Y):
+        """SODJKDOS"""
+        pass
