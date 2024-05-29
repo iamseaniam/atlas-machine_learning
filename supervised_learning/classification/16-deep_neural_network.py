@@ -4,9 +4,9 @@ import numpy as np
 
 
 class DeepNeuralNetwork:
-    """Defines a deep neural network performing binary classification."""
+    """classification."""
     def __init__(self, nx, layers):
-        """Initialize the deep neural network."""
+        """deep neural network."""
         if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
         if nx < 1:
