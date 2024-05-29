@@ -58,7 +58,7 @@ class NeuralNetwork:
         """DOcumentation"""
         Z1 = np.dot(self.__W1, X) + self.__b1
         self.__A1 = 1 / (1 + np.exp(-Z1))
-        Z2 = np.dot(self.__W2, X) + self.__b2
+        Z2 = np.dot(self.__W2, self.__A1) + self.__b2
         self.__A2 = 1 / (1 + np.exp(-Z2))
 
         return self.__A1, self.__A2
