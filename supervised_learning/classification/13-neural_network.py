@@ -77,7 +77,7 @@ class NeuralNetwork:
         return predictions, cost
 
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
-        """Documentation for sizzles"""
+        """Documentation 4 sizzles"""
         m = Y.shape[1]
 
         # Calculate the gradient for the output layer
