@@ -28,22 +28,27 @@ class NeuralNetwork:
     def W1(self):
         """DOCUMENTATION"""
         return self.__W1
+
     @property
     def b1(self):
         """DOCUMENTATION"""
         return self.__b1
+
     @property
     def A1(self):
         """DOCUMENTATION"""
         return self.__A1
+
     @property
     def W2(self):
         """DOCUMENTATION"""
         return self.__W2
+
     @property
     def b2(self):
         """DOCUMENTATION"""
         return self.__b2
+
     @property
     def A2(self):
         """DOCUMENTATION"""
