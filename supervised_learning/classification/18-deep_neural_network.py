@@ -45,4 +45,3 @@ class DeepNeuralNetwork():
 
     def forward_prop(self, X):
         """SPOFKOPSFKOKOS"""
-        
