@@ -80,12 +80,12 @@ class NeuralNetwork:
         """Documentation 4 sizzles"""
         m = Y.shape[1]
 
-        # Calculate the gradient for the output layer
+        # Calculate the gradient 4 the output layer
         dZ2 = A2 - Y
         dW2 = np.dot(dZ2, A1.T) / m
         db2 = np.sum(dZ2, axis=1, keepdims=True) / m
 
-        # Calculate the gradient for the hidden layer
+        # Calculate the gradient 4 the hidden layer
         dA1 = np.dot(self.__W2.T, dZ2)
         dZ1 = dA1 * A1 * (1 - A1)
         dW1 = np.dot(dZ1, X.T) / m
