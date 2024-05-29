@@ -99,14 +99,14 @@ class NeuralNetwork:
         self.__b1 -= alpha * db1
 
     def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
-        """this stuff is documented woop woop"""
+        """Train the neural network."""
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
+        if iterations <= 0:
             raise ValueError("iterations must be a positive integer")
         if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError("alpha must be positive")
         if not isinstance(step, int):
             raise TypeError("step must be an integer")
@@ -114,22 +114,23 @@ class NeuralNetwork:
             raise ValueError("step must be positive and <= iterations")
 
         costs = []
+        steps = []
+
         for i in range(iterations):
             A1, A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, A1, A2, alpha)
-            if verbose and i % step == 0:
+            
+            if i % step == 0 or i == iterations - 1:
                 cost = self.cost(Y, A2)
-                print(f"Cost after {i} iterations: {cost}")
-                costs.append((iterations, cost))
-        if verbose:
-            cost = self.cost(Y, A2)
-            print(f"Cost after {iterations} iterations: {cost}")
-            costs.append((iterations,cost))
+                costs.append(cost)
+                steps.append(i)
+                if verbose:
+                    print(f"Cost after {i} iterations: {cost}")
+
         if graph:
-            iterations, cost = zip(*cost)
-            plt.plot(iterations, costs, 'b-')
-            plt.xlabel('iteration')
-            plt.ylabel('cost')
-            plt.title('Training Cost')
+            plt.plot(steps, costs, 'b-')
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+            plt.title("Training Cost")
 
         return self.evaluate(X, Y)
