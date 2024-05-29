@@ -71,7 +71,7 @@ class NeuralNetwork:
 
     def evaluate(self, X, Y):
         """hmmmmmm frogs"""
-        A = self.forward_prop(X)
-        predictions = (A >= 0.5).astype(int)
-        cost = self.cost(Y, A)
+        _, A2 = self.forward_prop(X)
+        cost = self.cost(Y, A2)
+        predictions = (A2 >= 0.5).astype(int)
         return predictions, cost
