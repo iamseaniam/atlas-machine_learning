@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-""" Example Documentation """
-import tensorflow.compat.v1 as tf
+"""module for create_placeholders function"""
+import tensorflow as tf
 
 
 def create_placeholders(nx, classes):
-    """ Example Documentation """
-    x = tf.compat.v1.placeholder(tf.float32, shape=(1024, 1024))
-    y = tf.matmul(x, y)
+    """ Creates two tf placeholders."""
+    x = tf.placeholder(tf.float32, shape=(None, nx), name="x")
+    y = tf.placeholder(tf.float32, shape=(None, classes), name="y")
+    return x, y
