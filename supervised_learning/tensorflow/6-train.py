@@ -8,7 +8,11 @@ create_train_op = __import__('5-create_train_op').create_train_op
 forward_prop = __import__('2-forward_prop').forward_prop
 
 
-def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, iterations, save_path="/tmp/model.ckpt"):
+def train(
+    X_train, Y_train, X_valid, Y_valid, 
+    layer_sizes, activations, alpha, 
+    iterations, save_path="/tmp/model.ckpt"
+):
     """ Builds, trains, and saves a neural network classifier. """
     x, y = create_placeholders(
         X_train.shape[1],
