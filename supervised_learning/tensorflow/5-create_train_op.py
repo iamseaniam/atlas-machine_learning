@@ -5,4 +5,6 @@ import tensorflow.compat.v1 as tf
 
 def create_train_op(loss, alpha):
     """ Example Documentation """
-    pass
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=alpha)
+    train_op = optimizer.minimize(loss)
+    return train_op
