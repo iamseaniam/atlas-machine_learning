@@ -1,4 +1,4 @@
-#1/usr/bin/env python3
+#!/usr/bin/env python3
 """DOCUMENTATION"""
 import numpy as np
 import tensorflow.compat.v1 as tf
