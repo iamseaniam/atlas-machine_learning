@@ -10,7 +10,10 @@ forward_prop = __import__('2-forward_prop').forward_prop
 
 def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, iterations, save_path="/tmp/model.ckpt"):
     """ Builds, trains, and saves a neural network classifier. """
-    x, y = create_placeholders(X_train.shape[1], Y_train.shape[1])
+    x, y = create_placeholders(
+        X_train.shape[1],
+        Y_train.shape[1]
+    )
     y_pred = forward_prop(x, layer_sizes, activations)
     loss = calculate_loss(y, y_pred)
     accuracy = calculate_accuracy(y, y_pred)
@@ -32,8 +35,20 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, i
             if i > 0:
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
             if i % 100 == 0 or i == iterations:
-                train_cost, train_accuracy = sess.run([loss, accuracy], feed_dict={x: X_train, y: Y_train})
-                valid_cost, valid_accuracy = sess.run([loss, accuracy], feed_dict={x: X_valid, y: Y_valid})
+                train_cost, train_accuracy = sess.run(
+                    [loss, accuracy],
+                    feed_dict={
+                        x: X_train,
+                        y: Y_train
+                    }
+                )
+                valid_cost, valid_accuracy = sess.run(
+                    [loss, accuracy],
+                    feed_dict={
+                        x: X_valid,
+                        y: Y_valid
+                    }
+                )
                 print(f"After {i} iterations:")
                 print(f"\tTraining Cost: {train_cost}")
                 print(f"\tTraining Accuracy: {train_accuracy}")
