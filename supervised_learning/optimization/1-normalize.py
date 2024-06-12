@@ -5,3 +5,4 @@ import numpy as np
 
 def normalize(X, m, s):
     """DOCUMENTATION"""
+    return (X - m)/s

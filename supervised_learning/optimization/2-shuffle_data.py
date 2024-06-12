@@ -5,3 +5,5 @@ import numpy as np
 
 def shuffle_data(X, Y):
     """DOCUMENTATION"""
+    shuffle = np.random.permutation(len(X))
+    return X[shuffle], Y[shuffle]
