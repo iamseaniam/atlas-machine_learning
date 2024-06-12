@@ -5,5 +5,5 @@ import tensorflow as tf
 
 def create_momentum_op(alpha, beta1):
     """DOCUMENTATION"""
-    optimizer = tf.train.MomentumOptimizer(alpha, beta1)
+    optimizer = tf.keras.optimizers.SGD(learning_rate=alpha, momentum=beta1)
     return optimizer
