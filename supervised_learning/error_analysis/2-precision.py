@@ -1,2 +1,8 @@
 #!/usr/bin/env python3
-3-specificity.py
+"""Documentation"""
+import numpy as np
+
+
+def precision(confusion):
+    """DOCUMNEtation"""
+    pass
