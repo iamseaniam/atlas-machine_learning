@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def sensitivity(confusion): 
+def sensitivity(confusion):
     """DOCUMNEtation"""
     Summing = np.sum(confusion, axis=1)
     true_positive = np.diag(confusion)
