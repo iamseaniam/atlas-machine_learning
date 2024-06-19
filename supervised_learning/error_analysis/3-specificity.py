@@ -5,4 +5,8 @@ import numpy as np
 
 def specificity(confusion):
     """DOCUMNEtation"""
-    pass
+    trueP = np.diag(confusion)
+    FalseP = np.sum(confusion, axis=1) - trueP
+    FalseN = np.sum(confusion, axis=0) - trueP
+    TrueN = np.sum(confusion) - (trueP + FalseP + FalseN)
+    return TrueN / (TrueN + FalseP)
