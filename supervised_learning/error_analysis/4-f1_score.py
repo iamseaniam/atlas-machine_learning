@@ -10,6 +10,6 @@ def f1_score(confusion):
     TrueP = np.diag(confusion)
     FalseP = np.sum(confusion, axis=0) - TrueP
     FalseN = np.sum(confusion, axis=1) - TrueP
-    precisions = precision(confusion)
+    Preciision = precision(confusion)
     RecallPotion = TrueP / (TrueP + FalseN)
-    return 2/((RecallPotion ** -1) + (precisions ** -1))
+    return 2/((RecallPotion ** -1) + (Preciision ** -1))

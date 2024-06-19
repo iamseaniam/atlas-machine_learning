@@ -5,7 +5,7 @@ import numpy as np
 
 def precision(confusion):
     """DOCUMNEtation"""
-    SUMMMMMMMMM = np.sum(confusion, axis=1)
+    SUMMMMMMMMM = np.sum(confusion, axis=0)
     truePositive = np.diag(confusion)
     falsePositive = SUMMMMMMMMM - truePositive
     return truePositive / (truePositive + falsePositive)
