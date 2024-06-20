@@ -5,4 +5,4 @@ import tensorflow as tf
 
 def l2_reg_cost(cost, model):
     """DOCUMENTATION"""
-    pass
+    return cost + tf.losses.get_regularization_losses()
