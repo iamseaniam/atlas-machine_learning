@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Documentation"""
+"""Documentationefe"""
 import numpy as np
-import tensorflow as tf
 
 
 def early_stopping(cost, opt_cost, threshold, patience, count):
-    """HGFXRATYUIGHOAO"""
+    """DOCUMENTATION"""
     pass
