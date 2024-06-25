@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """documentaion"""
-import numpy as np
+import tensorflow.keras as K
 
 
 def one_hot(labels, classes=None):
     """
     Converts a label vector into a one-hot matrix.
     """
-    if classes is None:
-        classes = np.max(labels) + 1
-    one_hot_matrix = np.eye(classes)[labels]
+    one_hot_matrix = K.utils.to_categorical(labels,
+                                            num_classes=classes
+                                            )
     return one_hot_matrix
