@@ -15,7 +15,8 @@ def train_model(network,
                 shuffle=False
                 ):
     """
-    Trains a model using mini-batch gradient descent with optional early stopping.
+    Trains a model using mini-batch gradient descent,
+    with optional early stopping.
     """
     callbacks = []
     if early_stopping and validation_data is not None:
@@ -34,5 +35,3 @@ def train_model(network,
                           callbacks=callbacks
                           )
     return history
-
-# Your the tits nerd
