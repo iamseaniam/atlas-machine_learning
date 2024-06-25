@@ -5,8 +5,6 @@ import tensorflow.keras as K
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """Builds a neural network with the Keras library"""
     model = K.Sequential()
-
-    # Adds the first layer
     model.add(K.layers.Dense(layers[0],
                              activation=activations[0],
                              kernal_regularizer=K.regularizers.l2(lambtha),
