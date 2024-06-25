@@ -24,7 +24,7 @@ def train_model(network,
                                                             patience=patience
                                                             )
         callbacks.append(early_stopping_callback)
-    
+
     history = network.fit(data,
                           labels,
                           batch_size=batch_size,
