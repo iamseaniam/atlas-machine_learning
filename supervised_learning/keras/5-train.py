@@ -13,7 +13,8 @@ def train_model(network,
                 shuffle=False
                 ):
     """
-    Trains a model using mini-batch gradient descent with optional validation data.
+    Trains a model using mini-batch gradient descent
+    with optional validation data.
     """
     history = network.fit(data,
                           labels,
