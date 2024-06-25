@@ -2,6 +2,7 @@
 """DOCUMENTATION"""
 import tensorflow.keras as K
 
+
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """
     Builds a neural network with the Keras library.
