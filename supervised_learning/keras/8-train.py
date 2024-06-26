@@ -2,6 +2,7 @@
 """DOCUmentation"""
 import tensorflow.keras as K
 
+
 def train_model(network, data,
                 labels, batch_size,
                 epochs, validation_data=None,
@@ -19,13 +20,16 @@ def train_model(network, data,
 
     if early_stopping and validation_data:
         early_stopping_cb = K.callbacks.EarlyStopping(monitor='val_loss',
-                                                      patience=patience)
+                                                      patience=patience
+                                                      )
         callbacks.append(early_stopping_cb)
 
     if learning_rate_decay and validation_data:
         def lr_scheduler(epoch, lr):
             return alpha / (1 + decay_rate * epoch)
-        lr_decay_cb = K.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
+        lr_decay_cb = K.callbacks.LearningRateScheduler(lr_scheduler,
+                                                        verbose=1
+                                                        )
         callbacks.append(lr_decay_cb)
 
     if save_best and validation_data and filepath:
