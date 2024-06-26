@@ -2,6 +2,7 @@
 """DOCUmentation"""
 import tensorflow.keras as K
 
+
 def train_model(network, data,
                 labels, batch_size,
                 epochs, validation_data=None,
@@ -11,7 +12,8 @@ def train_model(network, data,
                 shuffle=False
                 ):
     """
-    Trains a model using mini-batch gradient descent and includes options for early stopping and learning rate decay.
+    Trains a model using mini-batch gradient descent,
+    and includes options for early stopping and learning rate decay.
     """
     callbacks = []
 
@@ -27,7 +29,7 @@ def train_model(network, data,
         lr_decay_cb = K.callbacks.LearningRateScheduler(lr_scheduler,
                                                         verbose=1
                                                         )
-    
+
         callbacks.append(lr_decay_cb)
 
     history = network.fit(data,
