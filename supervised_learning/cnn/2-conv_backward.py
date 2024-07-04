@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """documentation"""
 import numpy as np
-import tensorflow.compat.v1 as tf
 
 
 def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
