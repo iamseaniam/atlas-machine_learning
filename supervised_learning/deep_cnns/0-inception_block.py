@@ -25,7 +25,7 @@ def inception_block(A_prev, filters):
                             )(A_prev)
 
     #F1 -> F3R
-    conv13 = K.layers.Conv2D(filters=F3R, kernel_size=(3,3),
+    conv13 = K.layers.Conv2D(filters=F3R, kernel_size=(1,1),
                             padding='same', activation='relu',
                             kernel_initializer=init
                             )(A_prev)
@@ -37,7 +37,7 @@ def inception_block(A_prev, filters):
                              )(conv13)
 
     #F1 -> F5R
-    conv15 = K.layers.Conv2D(filters=F5R, kernel_size=(5,5),
+    conv15 = K.layers.Conv2D(filters=F5R, kernel_size=(1,1),
                             padding='same', activation='relu',
                             kernel_initializer=init
                             )(A_prev)
@@ -48,7 +48,7 @@ def inception_block(A_prev, filters):
                             kernel_initializer=init
                             )(conv15)
 
-    pl = K.layers.MaxPooling2D(pool_size=(3, 3), strides=1,
+    pool = K.layers.MaxPooling2D(pool_size=(3, 3), strides=1,
                                padding='same'
                                )(A_prev)
 
@@ -56,7 +56,7 @@ def inception_block(A_prev, filters):
         filters=FPP, kernel_size=(1, 1),
         padding='same', activation='relu',
         kernel_initializer=init
-        )(pl)
+        )(pool)
 
     concatenate = K.layers.Concatenate()([conv1, conv13, conv5, ConvFpp])
     return concatenate
