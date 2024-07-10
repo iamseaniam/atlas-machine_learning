@@ -63,7 +63,6 @@ def inception_block(A_prev, filters):
         kernel_initializer=init
         )(conv15)
 
-
     # pool
     pool = K.layers.MaxPooling2D(
         pool_size=(3, 3),
