@@ -29,27 +29,29 @@ def identity_block(A_prev, filters):
     Batch11 = K.layers.BatchNormalization(axis=3)(conv11)
     Relu11 = K.layers.Activation('relu')(Batch11)
 
-
-
     conv3 = K.layers.Conv2D(
         filters=F3,
         kernel_size=(3, 3),
+        strides=1,
         padding='same',
         kernel_initializer=init
-    )(A_prev)
+    )(Relu11)
+
+    Batch3 = K.layers.BatchNormalization(axis=3)(conv3)
+    Relu3 = K.layers.Activation('relu')(Batch3)
 
     conv12 = K.layers.Conv2D(
         filters=F12,
         kernel_size=(1, 1),
+        strides=1,
         padding='same',
-
         kernel_initializer=init
-    )(A_prev)
+    )(Relu3)
 
-    concatenate = K.layers.Concatenate()([
-        conv11,
-        conv3,
-        conv12
-    ])
+    Batch12 = K.layers.BatchNormalization(axis=3)(conv12)
 
-    return (concatenate + A_prev)
+    Adding = K.layers.Add()([Batch12, A_prev])
+
+    ReluFinal = K.layers.Activation('relu')(Adding)
+
+    return ReluFinal
