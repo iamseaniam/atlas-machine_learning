@@ -7,8 +7,8 @@ def identity_block(A_prev, filters):
     """
     documentation
     """
-    init = K.initializers.he_normal()
     F11, F3, F12, = filters
+    init = K.initializers.he_normal()
 
     conv11 = K.layers.Conv2D(
         filters=F11,
