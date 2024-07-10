@@ -19,44 +19,45 @@ def inception_block(A_prev, filters):
     F1, F3R, F3, F5R, F5, FPP = filters
 
     # F1
-    conv1 = K.layers.Conv2D(filters=F1, kernel_size=(1,1),
-                            padding='same', activation='relu',
-                            kernel_initializer=init
-                            )(A_prev)
+    conv1 = K.layers.Conv2D(filters=F1, kernel_size=(1, 1),
+                             padding='same', activation='relu',
+                             kernel_initializer=init
+                             )(A_prev)
 
-    #F1 -> F3R
-    conv13 = K.layers.Conv2D(filters=F3R, kernel_size=(1,1),
-                            padding='same', activation='relu',
-                            kernel_initializer=init
-                            )(A_prev)
+    # F1 -> F3R
+    conv13 = K.layers.Conv2D(filters=F3R, kernel_size=(1, 1),
+                             padding='same', activation='relu',
+                             kernel_initializer=init
+                             )(A_prev)
 
     # f3
-    conv13 = K.layers.Conv2D(filters=F3, kernel_size=(3,3),
+    conv13 = K.layers.Conv2D(filters=F3, kernel_size=(3, 3),
                              padding='same', activation='relu',
                              kernel_initializer=init
                              )(conv13)
 
-    #F1 -> F5R
-    conv15 = K.layers.Conv2D(filters=F5R, kernel_size=(1,1),
-                            padding='same', activation='relu',
-                            kernel_initializer=init
-                            )(A_prev)
+    # F1 -> F5R
+    conv15 = K.layers.Conv2D(filters=F5R, kernel_size=(1, 1), 
+                             padding='same', activation='relu',
+                             kernel_initializer=init
+                             )(A_prev)
 
     # F5
-    conv5 = K.layers.Conv2D(filters=F5, kernel_size=(5,5),
-                            padding='same', activation='relu',
-                            kernel_initializer=init
-                            )(conv15)
+    conv5 = K.layers.Conv2D(filters=F5, kernel_size=(5, 5),
+                             padding='same', activation='relu',
+                             kernel_initializer=init
+                             )(conv15)
 
+    # pool
     pool = K.layers.MaxPooling2D(pool_size=(3, 3), strides=1,
                                padding='same'
                                )(A_prev)
 
-    ConvFpp = K.layers.Conv2D(
-        filters=FPP, kernel_size=(1, 1),
-        padding='same', activation='relu',
-        kernel_initializer=init
-        )(pool)
+    # FPP
+    ConvFpp = K.layers.Conv2D(filters=FPP, kernel_size=(1, 1),
+         padding='same', activation='relu',
+         kernel_initializer=init
+         )(pool)
 
     concatenate = K.layers.Concatenate()([conv1, conv13, conv5, ConvFpp])
     return concatenate
