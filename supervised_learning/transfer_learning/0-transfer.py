@@ -1,73 +1,80 @@
 #!/usr/bin/env python3
-"""DOCUMENTATIOn"""
+"""Documentation"""
 import tensorflow as tf
 import keras as K
-import numpy as np
-import matplotlib.pyplot as plt
-# Notes:
-# Use 'Lambda' layer to resize imagies from 32x32 to 224x224. seems like a lot of inputs
-# Use a pre-trained model? ('ResNet50') with the 'include_top' para set to false to xclud top class layer
-# Freeze pre-trained layers to prevent them from being updated duing training
+from tensorflow.keras.applications import vgg16
+from tensorflow.keras.applications.vgg16 import VGG16
+# i did not figure out a way to do everything without theses imports. Sorry
 
 
 def preprocess_data(X, Y):
-    """Example from website
-    function that pre0processes the CIFAR10 dataset as per
-    densenet model requirements for input images
-    labels are one-hot encoded
-    """
-    X = K.applications.densenet.preprocess_input(X)
-    Y = K.utils.to_categorical(Y)
+    """Preprocess the data"""
+    X_p = vgg16.preprocess_input(X)
+    Y_p = K.utils.to_categorical(Y, 10)
+    return X_p, Y_p
 
-    return X, Y
+def creative_mode(input_shape=(32, 32, 3)):
+    """Creates model"""
+    Limgrave = VGG16(weights='imagenet',
+                     include_top=False,
+                     input_shape=(224, 224, 3)
+                     )
+    for layer in Limgrave.layers[:15]:
+        layer.trainable = False
 
+    inputs = K.Input(shape=input_shape)
+    x = K.layers.Lambda(lambda image: tf.image.resize(image, (224, 224)))(inputs)
+    x = Limgrave(x)
+    x = K.layers.Flatten()(x)
+    x = K.layers.Dense(512, activation='relu')(x)
+    x = K.layers.Dropout(0.5)(x)
+    x = K.layers.Dense(256, activation='relu')(x)
+    x = K.layers.Dropout(0.5)(x)
+    outputs = K.layers.Dense(10, activation='softmax')(x)
 
-# LOAD THE Cifar10 dataset, 50,000 training images
-# and  10,000 test images (here used as validation data)
-(x_train, y_train), (x_test, y_test) = K.datasets.cifar10.load_data()
-# preprocess the data using the application's preprocess_input 
-# method and conver the labels to one-hot encodings
-x_train, y_train = preprocess_data(x_train, y_train)
+    VolcanoManor = K.Model(inputs, outputs)
+    return VolcanoManor
 
-# weights are initialized as per the he et al. method 
-initializer = K.initializers.he_normal()
-input_tensor = K.Input(shape=(32, 32, 3))
+(X_train, Y_train), (X_test, Y_test) = K.datasets.cifar10.load_data()
+X_train, Y_train = preprocess_data(X_train, Y_train)
+X_test, Y_test = preprocess_data(X_test, Y_test)
 
-# resize images to the image size upon which the network was pre-trained
-resized_images = K.layers.Lambda(lambda image: tf.image.resize(image, (224, 224)))(input_tensor)
+Consort_Radahn = creative_mode()
+Consort_Radahn.compile(optimizer=K.optimizers.Adam(learning_rate=0.0001),
+                loss='categorical_crossentropy',
+                metrics=['accuracy']
+                )
 
-model = K.applications.DenseNet201(include_top=False,
-                                   weights='imagenet',
-                                   input_tensor=resized_images,
-                                   input_shape=(224, 224, 3),
-                                   pooling='max',
-                                   classes=1000)
+Pontiff = K.preprocessing.image.ImageDataGenerator(
+    rotation_range=20,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    horizontal_flip=True,
+    zoom_range=0.2,
+    shear_range=0.2
+)
+Pontiff.fit(X_train)
 
-# make the weights and biases of the base model non-trainable
-# by "freezing" each layer of the DenseNet202 network
+SiteOfGrace = K.callbacks.ModelCheckpoint('cifar10.h5',
+                                monitor='val_accuracy',
+                                save_best_only=True,
+                                mode='max'
+                                )
 
-for layer in model.layers:
-    layer.trainable = False
+early_stop = K.callbacks.EarlyStopping(monitor='val_accuracy',
+                                           patience=3, 
+                                           verbose=1, 
+                                           mode='max')
 
-output = model.layers[-1].output
+Rennala = Consort_Radahn.fit(
+    Pontiff.flow(X_train, Y_train, batch_size=64),
+    validation_data=(X_test, Y_test),
+    epochs=50,
+    callbacks=[SiteOfGrace, early_stop]
+)
 
-# reshape the output feature map of the base model before
-# passing the data on to the dense layers of the classifier head
-flatten = K.layers.Flatten()
-output = flatten(output)
+if __name__ == "__main__":
+    # ensures the script doesn't run on import
+    print("Script executed")
 
-layer_256 = K.layers.Dense(units=256,
-                           activation='elu',
-                           kernel_initializer=initializer,
-                           kernel_regularizer=K.regularizers.l2())
-output = layer_256(output)
-dropout = K.layers.Dropout(0.5)
-output = dropout(output)
-softmax = K.layers.Dense(units=10,
-                         activation='softmax',
-                         kernel_initializer=initializer,
-                         kernel_regularizer=K.regularizers.l2())
-softmax = softmax(output)
-
-
-# if __name__ == "__main__":
+Consort_Radahn.save('cifar10.h5')
