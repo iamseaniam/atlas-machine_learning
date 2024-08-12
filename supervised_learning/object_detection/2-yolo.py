@@ -65,8 +65,10 @@ class Yolo:
         box_scores = [
             box_conf * class_prob for box_conf,
             class_prob in zip(box_confidences, box_class_probs)]
-        box_classes = [np.argmax(box_score, axis=-1) for box_score in box_scores]
-        box_class_scores = [np.max(box_score, axis=-1) for box_score in box_scores]
+        box_classes = [
+            np.argmax(box_score, axis=-1) for box_score in box_scores]
+        box_class_scores = [
+            np.max(box_score, axis=-1) for box_score in box_scores]
 
         filtered_boxes = []
         filtered_classes = []
