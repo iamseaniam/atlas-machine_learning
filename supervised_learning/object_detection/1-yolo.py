@@ -15,43 +15,53 @@ class Yolo:
         self.nms_t = nms_t
         self.anchors = anchors
 
-    def sigmoid(self, x):
-        """Compute sigmoid function"""
-        return 1 / (1 + np.exp(-x))
+    def sigmoid(self, arr):
+        """sigmoid activation function"""
+        return 1 / (1+np.exp(-1*arr))
 
     def process_outputs(self, outputs, image_size):
-        """
-        Process the model outputs to get bounding boxes, box confidences, and class probabilities.
-        """
-        boxes = []
-        box_confidences = []
-        box_class_probs = []
-
-        image_height, image_width = image_size
+        """Documentation"""
+        IH, IW = image_size[0], image_size[1]
+        boxes = [output[..., :4] for output in outputs]
+        box_confidence, class_probs = [], []
+        cornersX, cornersY = [], []
 
         for output in outputs:
-            grid_height, grid_width, anchor_boxes = output.shape[:3]
-            box_xy = self.sigmoid(output[..., :2])
-            box_wh = np.exp(output[..., 2:4]) * self.anchors
-            box_confidence = self.sigmoid(output[..., 4:5])
-            box_class_prob = self.sigmoid(output[..., 5:])
+            gridH, gridW, anchors = output.shape[:3]
+            cx = np.arange(gridW).reshape(1, gridW)
+            cx = np.repeat(cx, gridH, axis=0)
+            cy = np.arange(gridW).reshape(1, gridW)
+            cy = np.repeat(cy, gridH, axis=0).T
 
-            col = np.tile(np.arange(0, grid_width).reshape(-1, 1, 1), (1, grid_height, anchor_boxes))
-            row = np.tile(np.arange(0, grid_height).reshape(1, -1, 1), (grid_width, 1, anchor_boxes))
+            cornersX.append(
+                np.repeat(cx[..., np.newaxis], anchors, axis=2)
+                )
+            cornersY.append(
+                np.repeat(cy[..., np.newaxis], anchors, axis=2)
+                )
+            box_confidence.append(self.sigmoid(output[..., 4:5]))
+            class_probs.append(self.sigmoid(output[..., 5:]))
 
-            box_xy += np.stack([col, row], axis=-1)
-            box_xy /= [grid_width, grid_height]
+        inputW = self.model.input.shape[1].value
+        inputH = self.model.input.shape[2].value
 
-            box_wh /= [self.model.input.shape[1].value, self.model.input.shape[2].value]  # Normalize wh values
+        for x, box in enumerate(boxes):
+            bx = (
+                (self.sigmoid(box[..., 0])+cornersX[x])/outputs[x].shape[1]
+                )
+            by = (
+                (self.sigmoid(box[..., 1])+cornersY[x])/outputs[x].shape[0]
+                )
+            bw = (
+                (np.exp(box[..., 2])*self.anchors[x, :, 0])/inputW
+                )
+            bh = (
+                (np.exp(box[..., 3])*self.anchors[x, :, 1])/inputH
+                )
 
-            box_xy -= (box_wh / 2)
-            box_xy = box_xy * [image_width, image_height]
-            box_wh = box_wh * [image_width, image_height]
+            box[..., 0] = (bx - (bw * 0.5))*IW
+            box[..., 1] = (by - (bh * 0.5))*IH
+            box[..., 2] = (bx + (bw * 0.5))*IW
+            box[..., 3] = (by + (bh * 0.5))*IH
 
-            box = np.concatenate([box_xy, box_xy + box_wh], axis=-1)
-
-            boxes.append(box)
-            box_confidences.append(box_confidence)
-            box_class_probs.append(box_class_prob)
-
-        return boxes, box_confidences, box_class_probs
+        return (boxes, box_confidence, class_probs)
