@@ -22,7 +22,7 @@ class Yolo:
         return 1 / (1 + np.exp(-arr))
 
     def process_outputs(self, outputs, image_size):
-        """Process model outputs into bounding boxes, confidences, and class probabilities"""
+        """Process model outputs into bounding boxes"""
         IH, IW = image_size[0], image_size[1]
         boxes = [output[..., :4] for output in outputs]
         box_confidence, class_probs = [], []
@@ -44,10 +44,14 @@ class Yolo:
         inputH = self.model.input.shape[2]
 
         for x, box in enumerate(boxes):
-            bx = (self.sigmoid(box[..., 0]) + cornersX[x]) / outputs[x].shape[1]
-            by = (self.sigmoid(box[..., 1]) + cornersY[x]) / outputs[x].shape[0]
-            bw = (np.exp(box[..., 2]) * self.anchors[x, :, 0]) / inputW
-            bh = (np.exp(box[..., 3]) * self.anchors[x, :, 1]) / inputH
+            bx = (
+                self.sigmoid(box[..., 0]) + cornersX[x]) / outputs[x].shape[1]
+            by = (
+                self.sigmoid(box[..., 1]) + cornersY[x]) / outputs[x].shape[0]
+            bw = (
+                np.exp(box[..., 2]) * self.anchors[x, :, 0]) / inputW
+            bh = (
+                np.exp(box[..., 3]) * self.anchors[x, :, 1]) / inputH
 
             box[..., 0] = (bx - (bw * 0.5)) * IW
             box[..., 1] = (by - (bh * 0.5)) * IH
@@ -58,7 +62,9 @@ class Yolo:
 
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
         """Filter boxes based on objectness score and class probability"""
-        box_scores = [box_conf * class_prob for box_conf, class_prob in zip(box_confidences, box_class_probs)]
+        box_scores = [
+            box_conf * class_prob for box_conf,
+            class_prob in zip(box_confidences, box_class_probs)]
         box_classes = [np.argmax(box_score, axis=-1) for box_score in box_scores]
         box_class_scores = [np.max(box_score, axis=-1) for box_score in box_scores]
 
