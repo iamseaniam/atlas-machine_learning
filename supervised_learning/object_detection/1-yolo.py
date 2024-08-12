@@ -2,15 +2,17 @@
 """Example documentation"""
 import numpy as np
 import tensorflow as tf
+import keras as K
 
 
-class Yolo:
-    """The YOLOv3 Class documentation"""
+class Yolo():
+    """Documentation"""
+
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
-        """Example documentation"""
-        self.model = tf.keras.models.load_model(model_path)
-        with open(classes_path, 'r') as file:
-            self.class_names = [line.strip() for line in file.readlines()]
+        """Documentation"""
+        self.model = K.models.load_model(model_path)
+        with open(classes_path, 'rt') as fd:
+            self.class_names = fd.read().rstrip('\n').split('\n')
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
