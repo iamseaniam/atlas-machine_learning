@@ -117,8 +117,7 @@ class Yolo:
             predicted_box_classes.append(np.full_like
                                          (tf.gather
                                           (scores_of_class,
-                                           selected_indices).numpy(),
-                                          cls))
+                                           selected_indices).numpy(), cls))
 
         box_predictions = np.concatenate(box_predictions, axis=0)
         predicted_box_classes = np.concatenate(predicted_box_classes, axis=0)
