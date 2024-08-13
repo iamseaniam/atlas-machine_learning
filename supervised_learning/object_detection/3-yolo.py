@@ -22,7 +22,10 @@ class Yolo:
         return 1 / (1 + np.exp(-arr))
 
     def process_outputs(self, outputs, image_size):
-        """Process model outputs into bounding boxes, confidences, and class probabilities"""
+        """
+        Process model outputs into bounding boxes,
+        confidences, and class probabilities
+        """
         IH, IW = image_size[0], image_size[1]
         boxes = [output[..., :4] for output in outputs]
         box_confidence, class_probs = [], []
