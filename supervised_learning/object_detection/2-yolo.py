@@ -85,4 +85,3 @@ class Yolo:
         box_scores = np.concatenate(filtered_scores, axis=0)
 
         return filtered_boxes, box_classes, box_scores
-
