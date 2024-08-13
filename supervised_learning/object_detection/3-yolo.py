@@ -44,8 +44,10 @@ class Yolo:
         inputH = self.model.input.shape[2]
 
         for x, box in enumerate(boxes):
-            bx = (self.sigmoid(box[..., 0]) + cornersX[x]) / outputs[x].shape[1]
-            by = (self.sigmoid(box[..., 1]) + cornersY[x]) / outputs[x].shape[0]
+            bx = (self.sigmoid
+                  (box[..., 0]) + cornersX[x]) / outputs[x].shape[1]
+            by = (self.sigmoid
+                  (box[..., 1]) + cornersY[x]) / outputs[x].shape[0]
             bw = (np.exp(box[..., 2]) * self.anchors[x, :, 0]) / inputW
             bh = (np.exp(box[..., 3]) * self.anchors[x, :, 1]) / inputH
 
@@ -58,9 +60,12 @@ class Yolo:
 
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
         """Filter boxes based on objectness score and class probability"""
-        box_scores = [box_conf * class_prob for box_conf, class_prob in zip(box_confidences, box_class_probs)]
-        box_classes = [np.argmax(box_score, axis=-1) for box_score in box_scores]
-        box_class_scores = [np.max(box_score, axis=-1) for box_score in box_scores]
+        box_scores = [box_conf * class_prob for box_conf,
+                      class_prob in zip(box_confidences, box_class_probs)]
+        box_classes = [np.argmax
+                       (box_score, axis=-1) for box_score in box_scores]
+        box_class_scores = [np.max
+                            (box_score, axis=-1) for box_score in box_scores]
 
         filtered_boxes = []
         filtered_classes = []
@@ -79,7 +84,9 @@ class Yolo:
         return filtered_boxes, box_classes, box_scores
 
     def non_max_suppression(self, filtered_boxes, box_classes, box_scores):
-        """Apply Non-Maximum Suppression (NMS) to filter the best bounding boxes"""
+        """
+        Apply Non-Maximum Suppression (NMS) to filter the best bounding boxes
+        """
         unique_classes = np.unique(box_classes)
         box_predictions = []
         predicted_box_classes = []
@@ -98,9 +105,17 @@ class Yolo:
                 iou_threshold=self.nms_t
             )
 
-            box_predictions.append(tf.gather(boxes_of_class, selected_indices).numpy())
-            predicted_box_scores.append(tf.gather(scores_of_class, selected_indices).numpy())
-            predicted_box_classes.append(np.full_like(tf.gather(scores_of_class, selected_indices).numpy(), cls))
+            box_predictions.append(tf.gather
+                                   (boxes_of_class,
+                                    selected_indices).numpy())
+            predicted_box_scores.append(tf.gather
+                                        (scores_of_class,
+                                         selected_indices).numpy())
+            predicted_box_classes.append(np.full_like
+                                         (tf.gather
+                                          (scores_of_class,
+                                           selected_indices).numpy(),
+                                          cls))
 
         box_predictions = np.concatenate(box_predictions, axis=0)
         predicted_box_classes = np.concatenate(predicted_box_classes, axis=0)

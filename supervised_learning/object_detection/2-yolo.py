@@ -8,6 +8,7 @@ import keras as K
 class Yolo:
     """YOLO object detection class"""
 
+
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
         """Initialize the YOLO model"""
         self.model = K.models.load_model(model_path)
