@@ -29,7 +29,11 @@ class Yolo:
         image_paths = []
 
         for filename in os.listdir(folder_path):
-            if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff')):
+            if filename.lower().endswith(('.png',
+                                          '.jpg',
+                                          '.jpeg',
+                                          '.bmp',
+                                          '.tiff')):
                 image_path = os.path.join(folder_path, filename)
                 image = cv2.imread(image_path)
                 if image is not None:
