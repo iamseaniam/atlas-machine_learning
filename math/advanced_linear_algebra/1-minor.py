@@ -3,6 +3,7 @@
 
 
 def minor(matrix):
+    """Documentation"""
     if not isinstance(matrix,
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
@@ -16,12 +17,15 @@ def minor(matrix):
             return SubM[0][0]
         if len(SubM) == 2:
             return SubM[0][0] * SubM[1][1] - SubM[0][1] * SubM[1][0]
-        
+
         det = 0
         for c in range(len(SubM)):
             minor = [[SubM[i][j] for j in range(len(SubM)) if j != c] for i in range(1, len(SubM))]
             det += ((-1) ** c) * SubM[0][c] * determinant(minor)
         return det
+
+    if len(matrix) == 1:
+        return [[1]]
 
     minor_matrix = []
     size = len(matrix)
