@@ -4,8 +4,6 @@
 
 def cofactor(matrix):
     """DOCUMENtation"""
-    if matrix == [[]]:
-        return 1
     if not isinstance(matrix,
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
