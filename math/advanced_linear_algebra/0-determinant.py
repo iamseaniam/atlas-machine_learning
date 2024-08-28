@@ -8,11 +8,10 @@ def determinant(matrix):
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
+    if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
+        raise ValueError("matrix must be a non-empty square matrix")
 
-    if not all(len(row) == len(matrix) for row in matrix):
-        raise ValueError("matrix must be a square matrix")
-
-    if matrix == [[]]:
+    if len(matrix) == 0:
         return 1
     if len(matrix) == 1:
         return matrix[0][0]
