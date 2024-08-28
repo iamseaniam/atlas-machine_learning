@@ -18,4 +18,3 @@ def definiteness(matrix):
 
     if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
-    
