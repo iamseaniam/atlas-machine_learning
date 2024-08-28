@@ -11,7 +11,7 @@ def cofactor(matrix):
                                                   list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
-        raise ValueError("matrix must be a square matrix")
+        raise ValueError("matrix must be a non-empty square matrix")
 
     mat1 = [[5]]
     mat2 = [[1, 2], [3, 4]]
