@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """Module for matrix definiteness checking."""
-
 import numpy as np
 
 
 def definiteness(matrix):
-    """
-    Check if the input is a non-empty square matrix.
-    """
+    """ Check if the input is a non-empty square matrix. """
     if not isinstance(matrix, np.ndarray):
         raise TypeError("matrix must be a numpy.ndarray")
 
