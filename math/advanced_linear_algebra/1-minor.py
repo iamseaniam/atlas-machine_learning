@@ -20,7 +20,8 @@ def minor(matrix):
 
         det = 0
         for c in range(len(SubM)):
-            minor = [[SubM[i][j] for j in range(len(SubM)) if j != c] for i in range(1, len(SubM))]
+            minor = [[SubM[i][j] for j in range(len(SubM)) if j != c]
+                     for i in range(1, len(SubM))]
             det += ((-1) ** c) * SubM[0][c] * determinant(minor)
         return det
 
@@ -32,8 +33,9 @@ def minor(matrix):
     for i in range(size):
         minor_row = []
         for j in range(size):
-            SubM = [[matrix[row][col] for col in range(size) if col != j] for row in range(size) if row != i]
+            SubM = [[matrix[row][col] for col in range(size) if col != j]
+                    for row in range(size) if row != i]
             minor_row.append(determinant(SubM))
         minor_matrix.append(minor_row)
-    
+
     return minor_matrix
