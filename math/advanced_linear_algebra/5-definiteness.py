@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """DOCUMEntaton"""
+import numpy as np
 
 
 def definiteness(matrix):
     """DOCUMENtation"""
+    if matrix != type(np.array):
+        raise TypeError("matrix must be a numpy.ndarray")
     if not isinstance(matrix,
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
