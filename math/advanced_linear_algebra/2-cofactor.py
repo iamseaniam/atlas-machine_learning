@@ -4,6 +4,8 @@
 
 def cofactor(matrix):
     """Calculates the cofactor matrix of a matrix."""
+    if len(matrix) == 1:
+        return [[1]]
     if not isinstance(matrix,
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
