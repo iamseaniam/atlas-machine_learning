@@ -35,7 +35,7 @@ def cofactor(matrix):
         cofactor_row = []
         for j in range(size):
             SubM = [[matrix[row][col] for col in range(size) if col != j]
-                      for row in range(size) if row != i]
+                    for row in range(size) if row != i]
             cofactor_value = ((-1) ** (i + j)) * determinant(SubM)
             cofactor_row.append(cofactor_value)
         cofactor_matrix.append(cofactor_row)
