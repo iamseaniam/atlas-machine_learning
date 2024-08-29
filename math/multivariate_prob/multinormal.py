@@ -14,9 +14,8 @@ def __init__(self, data):
 
 def pdf(self, x):
     """Documentation"""
+    d = 1
     if x is not isinstance(np.ndarray):
         raise TypeError("x must be a numpy.ndarray")
-    if x is not np.shape({d}, 1):
+    if x.shape != (d, 1):
         raise ValueError("x must have the shape ({d}, 1)")
-
-    d = 1
