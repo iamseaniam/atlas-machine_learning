@@ -4,14 +4,15 @@
 
 def cofactor(matrix):
     """Calculates the cofactor matrix of a matrix."""
-    if len(matrix) == 1:
-        return [[1]]
     if not isinstance(matrix,
                       list) or not all(isinstance(row,
                                                   list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
+
+    if len(matrix) == 1:
+        return [[1]]
 
     def determinant(SubM):
         """Helper function to calculate the determinant of a matrix."""
