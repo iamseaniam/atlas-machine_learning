@@ -4,10 +4,17 @@ import numpy as np
 
 
 def mean_cov(X):
-    """Documentation"""
-    if not isinstance(X, np.ndarray) or X.ndim != 2:
+    # Check if X is a 2D numpy.ndarray
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError("X must be a 2D numpy.ndarray")
+    
+    n, d = X.shape
     if n < 2:
         raise ValueError("X must contain multiple data points")
 
-    n = 0
+    mean = np.mean(X, axis=0).reshape(1, d)
+
+    X_centered = X - mean
+    cov = np.dot(X_centered.T, X_centered) / (n - 1)
+
+    return mean, cov
