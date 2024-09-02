@@ -4,10 +4,10 @@ import numpy as np
 
 
 def mean_cov(X):
-    # Check if X is a 2D numpy.ndarray
+    """finds mean and other fancy term"""
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError("X must be a 2D numpy.ndarray")
-    
+
     n, d = X.shape
     if n < 2:
         raise ValueError("X must contain multiple data points")
