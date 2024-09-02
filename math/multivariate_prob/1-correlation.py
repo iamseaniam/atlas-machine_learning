@@ -10,5 +10,3 @@ def correlation(C):
         raise TypeError("C must be a numpy.ndarray")
     if C.shape != (d, d):
         raise ValueError("C must be a 2D square matrix")
-
-
