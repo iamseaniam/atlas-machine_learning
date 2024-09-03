@@ -3,13 +3,20 @@
 import numpy as np
 
 
-def __init__(self, data):
-    """More fake documentation"""
-    n = 0
-    if not isinstance(data, np.ndarray) or data.nidm != 2:
-        raise TypeError("data must be a 2D numpy.ndarray")
-    if n < 2:
-        raise ValueError("X must contain multiple data points")
+class MultiNormal:
+    def __init__(self, data):
+        if not isinstance(data, np.ndarray) or len(data.shape) != 2:
+            raise TypeError("data must be a 2D numpy.ndarray")
+
+        d, n = data.shape
+
+        if n < 2:
+            raise ValueError("data must contain multiple data points")
+
+        self.mean = np.mean(data, axis=1, keepdims=True)
+
+        centered_data = data - self.mean
+        self.cov = (centered_data @ centered_data.T) / (n - 1)
 
 def pdf(self, x):
     """Documentation"""
