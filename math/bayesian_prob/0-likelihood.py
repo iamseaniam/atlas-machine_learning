@@ -47,6 +47,6 @@ def likelihood(x, n, P):
 
     binoial_coeff = WoahN // (WoahX * WoahNX)
 
-    likelihoods =  binoial_coeff * (P ** x) * ((1 - P) ** (n - x))
+    likelihoods = binoial_coeff * (P ** x) * ((1 - P) ** (n - x))
 
     return likelihoods
