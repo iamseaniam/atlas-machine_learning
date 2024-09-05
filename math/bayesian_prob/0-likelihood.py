@@ -41,7 +41,7 @@ def likelihood(x, n, P):
     for i in range(1, x+1):
         WoahX *= i
 
-    for i in range (1, (n-x)+1):
+    for i in range (1, (n - x)+1):
         WoahNX *= i
 
     binoial_coeff = WoahN // (WoahX * WoahNX)
