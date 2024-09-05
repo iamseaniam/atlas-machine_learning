@@ -25,7 +25,7 @@ def likelihood(x, n, P):
             "P must be a 1D numpy.ndarray"
             )
 
-    if not np.all((0 <= P) & (P <=1)):
+    if not np.all((0 <= P) & (P <= 1)):
         raise ValueError(
             "All values in P must be in the range [0, 1]"
             )
