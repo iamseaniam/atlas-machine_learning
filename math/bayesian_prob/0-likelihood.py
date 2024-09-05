@@ -5,8 +5,10 @@ import numpy as np
 
 def likelihood(x, n, P):
     """documentation"""
-    if not isinstance(n, int) or n > 0:
+    if n < 0:
         raise ValueError("n must be a postive integer")
+    else:
+        return n
     # if not isinstance(x, int) or x >= 0:
     #     raise ValueError("x must be an integer that is greater than or equal to 0")
     # if x > n:
