@@ -51,6 +51,7 @@ def likelihood(x, n, P):
 
     return likelihoods
 
+
 def intersection(x, n, P, Pr):
     """"Documentation"""
     if not isinstance(n, int) or n <= 0:
