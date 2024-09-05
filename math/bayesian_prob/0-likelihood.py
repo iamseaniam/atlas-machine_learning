@@ -33,15 +33,16 @@ def likelihood(x, n, P):
     WoahN = 1
     WoahX = 1
     WoahNX = 1
-    # Woah means factorial but thats really long and i cant type ! ):
+    # Woah means factorial of that var
+    # n! / x!(n - x)!
 
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         WoahN *= i
 
-    for i in range(1, x+1):
+    for i in range(1, x + 1):
         WoahX *= i
 
-    for i in range (1, (n - x)+1):
+    for i in range (1, (n - x) + 1):
         WoahNX *= i
 
     binoial_coeff = WoahN // (WoahX * WoahNX)
