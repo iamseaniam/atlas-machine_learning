@@ -5,6 +5,12 @@ import numpy as np
 
 def likelihood(x, n, P):
     """documentation"""
+    WoahN = 1
+    WoahX = 1
+    WoahNX = 1
+    # Woah means factorial of that var
+    # n! / x!(n - x)!
+
     if not isinstance(n, int) or n <= 0:
         raise ValueError(
             "n must be a positive integer"
@@ -29,12 +35,6 @@ def likelihood(x, n, P):
         raise ValueError(
             "All values in P must be in the range [0, 1]"
             )
-
-    WoahN = 1
-    WoahX = 1
-    WoahNX = 1
-    # Woah means factorial of that var
-    # n! / x!(n - x)!
 
     for i in range(1, n + 1):
         WoahN *= i
