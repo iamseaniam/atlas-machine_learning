@@ -7,7 +7,7 @@ def likelihood(x, n, P):
     """documentation"""
     if not isinstance(n, int) or n <= 0:
         raise ValueError(
-            "n must be a postive integer"
+            "n must be a positive integer"
             )
 
     if not isinstance(x, int) or x < 0:
