@@ -13,9 +13,11 @@ def pca(X, var=0.95):
     sorted_eigenvalues = eigenvalues[sorted_idx]
     sorted_eigenvectors = eigenvectors[:, sorted_idx]
 
-    cum_var_explained = np.cumsum(sorted_eigenvectors) / np.sum(sorted_eigenvalues)
+    cum_var_explained = np.cumsum(sorted_eigenvalues) / np.sum(sorted_eigenvalues)
 
     num_components = np.searchsorted(cum_var_explained, var) + 1
+
     W = sorted_eigenvectors[:, :num_components]
 
     return W
+
