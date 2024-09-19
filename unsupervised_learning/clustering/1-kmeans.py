@@ -4,48 +4,69 @@ import numpy as np
 
 
 def initialize(X, k):
-    """Initializes the centroids for K-means clustering."""
-    if not isinstance(X,
-                      np.ndarray) or len(
-                          X.shape) != 2 or not isinstance(k, int) or k <= 0:
+    """
+    Initializes cluster centroids for K-means.
+    """
+    try:
+        if k <= 0:
+            return None
+        _, d = X.shape
+
+        low = np.amin(X, axis=0)
+        high = np.amax(X, axis=0)
+
+        return np.random.uniform(low, high, (k, d))
+    except Exception:
         return None
 
-    min_vals = np.min(X, axis=0)
-    max_vals = np.max(X, axis=0)
 
-    centroids = np.random.uniform(min_vals, max_vals, (k, X.shape[1]))
+def Kassignments(X, clusters, assignments):
+    """
+    Documentation
+    """
+    points, dims = X.shape
+    x = X.reshape(points, 1, dims)
+    x = x - np.repeat(clusters[np.newaxis, ...], points, axis=0)
+    dist = np.linalg.norm(x, axis=2)
 
-    return centroids
+    mins = np.argmin(dist, axis=1)
+    if np.array_equal(mins, assignments):
+        return True, assignments
+
+    return False, mins
 
 
 def kmeans(X, k, iterations=1000):
-    """Performs K-means clustering on the dataset X."""
-    if not isinstance(X,
-                      np.ndarray) or len(
-                          X.shape) != 2 or not isinstance(k, int) or k <= 0:
+    """
+    Performs K-means on a dataset.
+    """
+
+    if type(X) is not np.ndarray or X.ndim != 2:
         return None, None
-    
-    # Initialize the centroids
-    centroids = initialize(X, k)
-    if centroids is None:
+    if type(k) is not int or k <= 0:
+        return None, None
+    if type(iterations) is not int or iterations <= 0:
         return None, None
 
-    n, d = X.shape
-    clss = np.zeros(n)
-    
+    clusters = initialize(X, k)
+    assignments = np.zeros((X.shape[0],))
+
+    if k == 1:
+        return np.mean(X, axis=0)[np.newaxis, ...], assignments
+
     for i in range(iterations):
-        distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
-        new_clss = np.argmin(distances, axis=1)
-        if np.all(clss == new_clss):
-            break
-        clss = new_clss
+        done, assignments = Kassignments(X, clusters, assignments)
+
+        if done:
+            return clusters, assignments
 
         for j in range(k):
-            assigned_points = X[clss == j]
-            if len(assigned_points) == 0:
-                centroids[j] = np.random.uniform(
-                    np.min(X, axis=0), np.max(X, axis=0), (1, d))
+            idx = np.argwhere(assignments == j)
+            if len(idx) == 0:
+                clusters[j] = (initialize(X, 1))[0]
             else:
-                centroids[j] = np.mean(assigned_points, axis=0)
+                clusters[j] = np.mean(X[idx, ...], axis=0)
 
-    return centroids, clss
+    _, assignments = Kassignments(X, clusters, assignments)
+
+    return clusters,
