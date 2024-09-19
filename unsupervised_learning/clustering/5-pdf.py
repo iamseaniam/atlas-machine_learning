@@ -5,21 +5,28 @@ import numpy as np
 
 def pdf(X, m, S):
     """Calculates the PDF of a Gaussian distribution."""
-    if not isinstance(X, 
-                      np.ndarray) or not isinstance(
-                          m, np.ndarray) or not isinstance(S, np.ndarray):
+    if type(X) is not np.ndarray or X.ndim != 2:
+        return None
+    if type(m) is not np.ndarray or m.shape[0] != X.shape[1]:
+        return None
+    if type(S) is not np.ndarray or S.ndim != 2:
+        return None
+    if S.shape[0] != S.shape[1] or S.shape[0] != X.shape[1]:
         return None
 
-    d = X.shape[1]
+    D = m.shape[0]
 
-    det_S = np.linalg.det(S)
-    inv_S = np.linalg.inv(S)
+    Px = (2*np.pi)**(D/2)
+    Px = 1 / (Px * (np.linalg.det(S)**(1/2)))
+    covI = np.linalg.inv(S)
+    x_mu = X - m.reshape(D, 1).T
+    dot = np.dot(x_mu, covI)
 
-    norm_factor = 1 / np.sqrt((2 * np.pi) ** d * det_S)
+    # dot where i == j
+    dot = (dot * x_mu).sum(axis=1)
 
-    diff = X - m
-    exponent = -0.5 * np.sum(diff @ inv_S * diff, axis=1)
+    pdv = Px*np.exp((-1/2)*dot)
 
-    P = norm_factor * np.exp(exponent)
-    
-    return np.maximum(P, 1e-300)
+    pdv[pdv < 1e-300] = 1e-300
+
+    return pdv
