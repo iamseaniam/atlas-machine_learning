@@ -11,7 +11,6 @@ def initialize(X, k):
     if type(k) is not int or k <= 0:
         return None, None, None
 
-    kmeans = __import__('1-kmeans').kmeans
     d = X.shape[1]
 
     m, _ = kmeans(X, k)
