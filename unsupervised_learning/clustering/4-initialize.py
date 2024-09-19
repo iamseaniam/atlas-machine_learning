@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 """Docmentation"""
 import numpy as np
-
-
-#!/usr/bin/env python3
-"""Docmentation"""
-import numpy as np
+kmeans = __import__('1-kmeans').kmeans
 
 
 def initialize(X, k):
