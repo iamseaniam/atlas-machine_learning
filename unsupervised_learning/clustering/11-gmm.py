@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Docmentation"""
 import numpy as np
-from sklearn.mixture import GaussianMixture
+import sklearn.cluster
 
 
 def gmm(X, k):
@@ -11,7 +11,7 @@ def gmm(X, k):
     if not isinstance(k, int) or k <= 0:
         return None, None, None, None, None
 
-    gmm_model = GaussianMixture(n_components=k)
+    gmm_model = sklearn.cluster.GaussianMixture(n_components=k)
     gmm_model.fit(X)
 
     pi = gmm_model.weights_
