@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Docmentation"""
 import numpy as np
-import sklearn.cluster
+import sklearn.cluster as skcls
 
 
 def kmeans(X, k):
@@ -11,10 +11,5 @@ def kmeans(X, k):
     if not isinstance(k, int) or k <= 0:
         return None, None
 
-    kmeans_model = sklearn.KMeans(n_clusters=k)
-    kmeans_model.fit(X)
-
-    C = kmeans_model.cluster_centers_
-    clss = kmeans_model.labels_
-    
-    return C, clss
+    centroid, label, inertia = skcls.k_means(X, k)
+    return centroid, label
