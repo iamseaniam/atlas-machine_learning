@@ -19,23 +19,18 @@ def expectation(X, pi, m, S):
         not np.isclose(np.sum(pi), 1)):
         return None, None
 
-    # Initialize the responsibility matrix (g)
     g = np.zeros((k, n))
 
-    # Calculate the probability for each cluster
     for i in range(k):
         P = pdf(X, m[i], S[i])
         if P is None:
             return None, None
         g[i] = pi[i] * P
 
-    # Total probability for each data point (denominator for normalization)
     total_prob = np.sum(g, axis=0)
 
-    # Log likelihood
     log_likelihood = np.sum(np.log(total_prob))
 
-    # Normalize the responsibilities (posterior probabilities)
     g /= total_prob
 
     return g, log_likelihood
