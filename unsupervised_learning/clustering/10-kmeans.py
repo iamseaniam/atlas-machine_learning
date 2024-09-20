@@ -11,7 +11,7 @@ def kmeans(X, k):
     if not isinstance(k, int) or k <= 0:
         return None, None
 
-    kmeans_model = sklearn.cluster.KMeans(n_clusters=k)
+    kmeans_model = sklearn.KMeans(n_clusters=k)
     kmeans_model.fit(X)
 
     C = kmeans_model.cluster_centers_
