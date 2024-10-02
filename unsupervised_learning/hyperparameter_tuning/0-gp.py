@@ -6,7 +6,7 @@ import numpy as np
 class GaussianProcess:
     """Documentation"""
     def __init__(self, X_init, Y_init, l=1, sigma_f=1):
-        """Documentation""" 
+        """Documentation"""
         self.X = X_init
         self.Y = Y_init
         self.l = l
