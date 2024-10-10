@@ -22,7 +22,7 @@ class BayesianOptimization:
 
     def acquisition(self):
         """
-        Calculates the next best sample location using Expected Improvement (EI)
+        Calculates the next best sample location using Expected Improvement
         """
         mu_s, sigma_s = self.gp.predict(self.X_s)
         mu_opt = np.min(self.gp.Y) if self.minimize else np.max(self.gp.Y)
