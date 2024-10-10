@@ -10,7 +10,7 @@ class BayesianOptimization:
                  bounds, ac_samples, l=1, sigma_f=1,
                  xsi=0.01, minimize=True):
         """
-        Class constructor for Bayesian Optimization on a noiseless 1D Gaussian process
+        Class constructor for Bayesian Optimization on a noiseless 1D Gaussian
         """
         self.f = f
         self.gp = GP(X_init, Y_init, l=l, sigma_f=sigma_f)
