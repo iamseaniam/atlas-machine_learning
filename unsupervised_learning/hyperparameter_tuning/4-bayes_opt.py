@@ -6,6 +6,8 @@ GP = __import__('2-gp').GaussianProcess
 
 
 np.set_printoptions(precision=8)
+
+
 class BayesianOptimization:
     """Documentation"""
     def __init__(self, f, X_init, Y_init,
