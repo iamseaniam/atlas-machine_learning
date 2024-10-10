@@ -25,17 +25,18 @@ class BayesianOptimization:
         Calculates the next best sample location using Expected Improvement (EI)
         """
         mu_s, sigma_s = self.gp.predict(self.X_s)
-        sigma_s = np.maximum(sigma_s, 1e-9)
+        mu_opt = np.min(self.gp.Y) if self.minimize else np.max(self.gp.Y)
+
         if self.minimize:
-            mu_opt = np.min(self.gp.Y)
+            improvement = mu_opt - mu_s - self.xsi
         else:
-            mu_opt = np.max(self.gp.Y)
+            improvement = mu_s - mu_opt - self.xsi
+
         with np.errstate(divide='warn'):
-            improvement = mu_opt - mu_s - (
-                self.xsiif self.minimize else mu_s - mu_opt - self.xsi)
             Z = improvement / sigma_s
-            EI = improvement * norm.cdf(Z) + sigma_s * norm.pdf(Z)
+            ei = improvement * norm.cdf(Z) + sigma_s * norm.pdf(Z)
+            ei[sigma_s == 0.0] = 0.0
 
-        X_next = self.X_s[np.argmax(EI)].reshape(-1, 1)
+        X_next = self.X_s[np.argmax(ei)]
 
-        return X_next, EI
+        return X_next, ei
