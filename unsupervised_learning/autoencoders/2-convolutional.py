@@ -4,6 +4,7 @@ import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, filters, latent_dims):
+    """dUCUMENtation"""
     encoder_input = keras.layers.Input(shape=input_dims)
     x = encoder_input
 
