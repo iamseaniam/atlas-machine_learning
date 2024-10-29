@@ -34,7 +34,7 @@ class BidirectionalCell:
         """
         pass
 
-    def output(self, H)
+    def output(self, H):
         """_summary_
         """
         pass
