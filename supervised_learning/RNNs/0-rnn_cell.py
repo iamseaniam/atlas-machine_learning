@@ -23,6 +23,7 @@ class RNNCell:
         self.by = np.zeros((1, o))
 
     def softmax(self, z):
+        """applies softmax activation"""
         exp_z = np.exp(z - np.max(z, axis=1, keepdims=True))
         return exp_z / np.sum(exp_z, axis=1, keepdims=True)
 
