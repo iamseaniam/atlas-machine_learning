@@ -7,13 +7,7 @@ class BidirectionalCell:
     """documentation"""
 
     def __init__(self, i, h, o):
-        """_summary_
-
-        Args:
-            i (_type_): _description_
-            h (_type_): _description_
-            o (_type_): _description_
-        """
+        """_summary_"""
         self.Whf = np.random.randn(i + h, h)
         self.bhf = np.zeros((1, h))
 
@@ -35,7 +29,7 @@ class BidirectionalCell:
 
     def backward(self, h_next, x_t):
         """
-        Calculates the hidden state in the backward direction for one time step.
+        to long
         """
         concat_input = np.concatenate((h_next, x_t), axis=1)
 
