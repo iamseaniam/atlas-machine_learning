@@ -9,7 +9,8 @@ def bag_of_words(sentences, vocab=None):
     tokenized_sentences = [sentence.lower().split() for sentence in sentences]
 
     if vocab is None:
-        vocab = sorted(set(word for sentence in tokenized_sentences for word in sentence))
+        vocab = sorted(set(
+            word for sentence in tokenized_sentences for word in sentence))
     else:
         vocab = sorted(vocab)
 
