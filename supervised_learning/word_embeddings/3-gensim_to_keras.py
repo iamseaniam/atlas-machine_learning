@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """dsijdsodjsd"""
-import numpy as np
+import gensim
 
 
 def gensim_to_keras(model):

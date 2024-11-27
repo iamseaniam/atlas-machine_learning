@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """dsijdsodjsd"""
-import numpy as np
+import gensim
 
 
 def tf_idf(sentences, vocab=None):
