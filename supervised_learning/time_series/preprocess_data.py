@@ -2,7 +2,7 @@
 """documentation"""
 import pandas as pd
 import numpy as np
-from sklean.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 
 def preprocess_data(file_path):
     # Loading Data
@@ -10,11 +10,12 @@ def preprocess_data(file_path):
 
     # Selecting features
     data = data[[
-        'open',
-        'high',
-        'low',
-        'close',
-        'volume_weighted_average_price'
+        'Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume_(BTC)', 'Volume_(Currency)', 'Weighted_Price'
+        # 'Open',
+        # 'High',
+        # 'Low',
+        # 'Close',
+        # 'Weighted_Price'
     ]]
 
     # Scale Data
@@ -32,4 +33,4 @@ def preprocess_data(file_path):
     np.save('X.npy', X)
     np.save('y.npy', y)
 
-preprocess_data('coinbaseUSD.csv') # bitstampUSD.csv
+preprocess_data('/home/sean/ml/tf_gpu/atlas-machine_learning/supervised_learning/time_series/coinbaseUSD.csv') # bitstampUSD.csv
