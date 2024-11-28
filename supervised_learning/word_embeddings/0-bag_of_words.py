@@ -6,7 +6,8 @@ import numpy as np
 
 def bag_of_words(sentences, vocab=None):
     """sodsdos"""
-    tokenized_sentences = [sentence.lower().split() for sentence in sentences]
+    tokenized_sentences = [
+        sentence.lower().split() for sentence in sentences]
 
     if vocab is None:
         vocab = sorted(set(
@@ -24,4 +25,3 @@ def bag_of_words(sentences, vocab=None):
                 embeddings[i, word_to_index[word]] += 1
 
     return embeddings, vocab
-
