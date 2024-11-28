@@ -9,4 +9,19 @@ def word2vec_model(sentences, vector_size=100,
                    epochs=5, seed=0,
                    workers=1):
     """sodsdos"""
-    pass
+    sg = 0 if cbow else 1
+
+    model = gensim.models.Word2Vec(
+        sentences=sentences,
+        vector_size=vector_size,
+        window=window,
+        min_count=min_count,
+        sg=sg,
+        negative=negative,
+        seed=seed,
+        workers=workers
+    )
+
+    model.train(sentences, total_examples=model.corpus_count, epochs=epochs)
+
+    return model
