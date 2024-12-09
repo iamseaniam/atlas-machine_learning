@@ -2,7 +2,6 @@
 """Documentation"""
 import transformers
 import tensorflow_datasets as tfds
-import tensorflow as tf
 
 
 class Dataset:
