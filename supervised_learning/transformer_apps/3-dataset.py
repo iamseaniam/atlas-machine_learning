@@ -23,5 +23,3 @@ class Dataset:
     def __init__(self, batch_size, max_len):
         """Documentation"""
         pass
-
-    
