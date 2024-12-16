@@ -60,7 +60,7 @@ class Dataset:
 
         return pt_model_trained, en_model_trained
 
-    def encode(self, pt, en):
+    def tf_encode(self, pt, en):
         """Documentation"""
 
         pt_tokens, en_tokens = tf.py_function(
