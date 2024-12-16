@@ -9,3 +9,4 @@ supervised_learning/time_series/coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.
 supervised_learning/time_series/bitstampUSD.csv
 supervised_learning/time_series/coinbaseUSD.csv
 supervised_learning/transformer_apps/__pycache__/0-dataset.cpython-39.pyc
+supervised_learning/transformer_apps/__pycache__/1-dataset.cpython-39.pyc
