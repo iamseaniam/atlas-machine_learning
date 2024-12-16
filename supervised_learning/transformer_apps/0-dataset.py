@@ -22,7 +22,7 @@ class Dataset:
         self.tokenizer_pt, self.tokenizer_en = self.tokenize_dataset(
             self.data_train)
 
-    def tokenize_data(self, data):
+    def tokenize_dataset(self, data):
         """Documentation"""
 
         en_base = []
@@ -33,12 +33,12 @@ class Dataset:
             pt_base.append(pt.numpy().decode("utf-8"))
 
         def en_iterator():
-            for en in en_base:
-                yield en
+            """documentation"""
+            yield from en_base
 
         def pt_iterator():
-            for pt in pt_base:
-                yield pt
+            """documentation"""
+            yield from pt_base
 
         tokenizer_pt = transformers.BertTokenizerFast.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
