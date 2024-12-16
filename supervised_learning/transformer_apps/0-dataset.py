@@ -5,57 +5,69 @@ import tensorflow_datasets as tfds
 
 
 class Dataset:
-    """class for a dataset"""
+    """Documentation"""
 
     def __init__(self):
-        """documentation"""
+        """Documentation"""
 
         self.data_train = tfds.load(
-            "ted_hrlr_translate/pt_to_en", split="train", as_supervised=True
-        )
+            'ted_hrlr_translate/pt_to_en',
+            split='train',
+            as_supervised=True
+            )
+
         self.data_valid = tfds.load(
-            "ted_hrlr_translate/pt_to_en",
-            split="validation", as_supervised=True
-        )
+            'ted_hrlr_translate/pt_to_en',
+            split='validation',
+            as_supervised=True
+            )
 
         self.tokenizer_pt, self.tokenizer_en = self.tokenize_dataset(
             self.data_train)
 
-    def tokenize_dataset(self, data):
+
+    def tokenizse_dataset(self, data):
         """Documentation"""
 
-        en_base = []
-        pt_base = []
+        portuguese_base = []
+        english_base = []
 
-        for en, pt in data:
-            en_base.append(en.numpy().decode("utf-8"))
-            pt_base.append(pt.numpy().decode("utf-8"))
+        for english, portuguese in data:
+            english_base.append(
+                english.numpy().decode(
+                    "utf-8"
+                    ))
 
-        def en_iterator():
-            for en in en_base:
-                yield en
+            portuguese_base.append(
+                portuguese.numpy().decode(
+                    "utf-8"
+                    ))
 
-        def pt_iterator():
-            for pt in pt_base:
-                yield pt
+        def english_itorrater():
+            for english in english_base:
+                yield english
 
-        tokenizer_pt = transformers.BertTokenizerFast.from_pretrained(
+        def portuguese_iterator():
+            for portuguese in portuguese_base:
+                yield portuguese
+
+        tokenizer_port = transformers.BertTokenizerFast.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
         )
-        tokenizer_en = transformers.BertTokenizerFast.from_pretrained(
+
+        english_tokenizer = transformers.BertTokenizerFast.from_pretrained(
             "bert-base-uncased"
         )
 
         vocab_size = 2**13
 
-        en_model_trained = tokenizer_en.train_new_from_iterator(
-            text_iterator=en_iterator(), vocab_size=vocab_size
+        english_model_trained = english_tokenizer.train_new_from_iterator(
+            text_iterator=english_itorrater(),
+            vocab_size=vocab_size
+        )
+        portuguese_model_trained = tokenizer_port.train_new_from_iterator(
+            text_iterator=portuguese_iterator(),
+            vocab_size=vocab_size
         )
 
-        pt_model_trained = tokenizer_pt.train_new_from_iterator(
-            text_iterator=pt_iterator(), vocab_size=vocab_size
-        )
-
-        # Train here somewhere I guess
-        # They need to be trained on the data passed in
-        return pt_model_trained, en_model_trained
+        return english_model_trained, portuguese_model_trained
