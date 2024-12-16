@@ -21,24 +21,23 @@ class Dataset:
         self.tokenizer_pt, self.tokenizer_en = self.tokenize_dataset(
             self.data_train)
 
-
     def tokenize_data(self, data):
         """Documentation"""
 
         en_base = []
         pt_base = []
 
-        for Eng, Port in data:
+        for en, pt in data:
             en_base.append(
-                Eng.numpy().decode("utf-8"))
+                en.numpy().decode("utf-8"))
             pt_base.append(
-                Port.numpy().decode("utf-8"))
+                pt.numpy().decode("utf-8"))
 
         def en_iterator():
             """documentation"""
             yield from en_base
 
-        def Port_iterator():
+        def pt_iterator():
             """documentation"""
             yield from pt_base
 
@@ -53,13 +52,13 @@ class Dataset:
         # ? what is vocab_size doing here
         vocab_size = 2**13
 
-        Eng_model_trained = tokenizer_en.train_new_from_iterator(
+        en_model_trained = tokenizer_en.train_new_from_iterator(
             text_iterator=en_iterator(),
             vocab_size=vocab_size
         )
-        Port_model_trained = tokenizer_pt.train_new_from_iterator(
-            text_iterator=Port_iterator(),
+        pt_model_trained = tokenizer_pt.train_new_from_iterator(
+            text_iterator=pt_iterator(),
             vocab_size=vocab_size
         )
 
-        return Eng_model_trained, Port_model_trained
+        return en_model_trained, pt_model_trained
