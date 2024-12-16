@@ -51,12 +51,11 @@ class Dataset:
         vocab_size = 2**13
 
         en_model_trained = tokenizer_en.train_new_from_iterator(
-            text_iterator=en_iterator(),
-            vocab_size=vocab_size
+            text_iterator=en_iterator(), vocab_size=vocab_size
         )
+
         pt_model_trained = tokenizer_pt.train_new_from_iterator(
-            text_iterator=pt_iterator(),
-            vocab_size=vocab_size
+            text_iterator=pt_iterator(), vocab_size=vocab_size
         )
 
         return en_model_trained, pt_model_trained
