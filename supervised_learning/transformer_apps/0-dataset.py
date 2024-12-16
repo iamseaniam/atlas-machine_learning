@@ -29,8 +29,8 @@ class Dataset:
     def tokenize_data(self, data):
         """Documentation"""
 
-        pt_base = []
         en_base = []
+        pt_base = []
 
         for Eng, Port in data:
             en_base.append(
