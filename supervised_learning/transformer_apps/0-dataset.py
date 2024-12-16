@@ -43,7 +43,6 @@ class Dataset:
         tokenizer_pt = transformers.BertTokenizerFast.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
         )
-
         tokenizer_en = transformers.BertTokenizerFast.from_pretrained(
             "bert-base-uncased"
         )
@@ -58,4 +57,4 @@ class Dataset:
             text_iterator=pt_iterator(), vocab_size=vocab_size
         )
 
-        return en_model_trained, pt_model_trained
+        return pt_model_trained, en_model_trained
