@@ -26,44 +26,42 @@ class Dataset:
             self.data_train)
 
 
-    def tokenizse_dataset(self, data):
+    def tokenize_data(self, data):
         """Documentation"""
 
-        PortBase = []
-        EngBase = []
+        pt_base = []
+        en_base = []
 
         for Eng, Port in data:
-            EngBase.append(
+            en_base.append(
                 Eng.numpy().decode("utf-8"))
-            PortBase.append(
+            pt_base.append(
                 Port.numpy().decode("utf-8"))
 
-        def Eng_itorrater():
+        def en_iterator():
             """documentation"""
-            for Eng in EngBase:
-                yield Eng
+            yield from en_base
 
         def Port_iterator():
             """documentation"""
-            for Port in PortBase:
-                yield Port
+            yield from pt_base
 
-        tokenizer_port = transformers.BertTokenizerFast.from_pretrained(
+        tokenizer_pt = transformers.BertTokenizerFast.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
         )
 
-        Eng_tokenizer = transformers.BertTokenizerFast.from_pretrained(
+        tokenizer_en = transformers.BertTokenizerFast.from_pretrained(
             "bert-base-uncased"
         )
 
         # ? what is vocab_size doing here
         vocab_size = 2**13
 
-        Eng_model_trained = Eng_tokenizer.train_new_from_iterator(
-            text_iterator=Eng_itorrater(),
+        Eng_model_trained = tokenizer_en.train_new_from_iterator(
+            text_iterator=en_iterator(),
             vocab_size=vocab_size
         )
-        Port_model_trained = tokenizer_port.train_new_from_iterator(
+        Port_model_trained = tokenizer_pt.train_new_from_iterator(
             text_iterator=Port_iterator(),
             vocab_size=vocab_size
         )
