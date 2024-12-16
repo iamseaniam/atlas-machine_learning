@@ -28,10 +28,8 @@ class Dataset:
         pt_base = []
 
         for en, pt in data:
-            en_base.append(
-                en.numpy().decode("utf-8"))
-            pt_base.append(
-                pt.numpy().decode("utf-8"))
+            en_base.append(en.numpy().decode("utf-8"))
+            pt_base.append(pt.numpy().decode("utf-8"))
 
         def en_iterator():
             """documentation"""
@@ -49,7 +47,6 @@ class Dataset:
             "bert-base-uncased"
         )
 
-        # ? what is vocab_size doing here
         vocab_size = 2**13
 
         en_model_trained = tokenizer_en.train_new_from_iterator(
