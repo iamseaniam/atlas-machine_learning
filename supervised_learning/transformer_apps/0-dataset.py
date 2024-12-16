@@ -29,45 +29,43 @@ class Dataset:
     def tokenizse_dataset(self, data):
         """Documentation"""
 
-        portuguese_base = []
-        english_base = []
+        PortBase = []
+        EngBase = []
 
-        for english, portuguese in data:
-            english_base.append(
-                english.numpy().decode(
-                    "utf-8"
-                    ))
+        for Eng, Port in data:
+            EngBase.append(
+                Eng.numpy().decode("utf-8"))
+            PortBase.append(
+                Port.numpy().decode("utf-8"))
 
-            portuguese_base.append(
-                portuguese.numpy().decode(
-                    "utf-8"
-                    ))
+        def Eng_itorrater():
+            """documentation"""
+            for Eng in EngBase:
+                yield Eng
 
-        def english_itorrater():
-            for english in english_base:
-                yield english
-
-        def portuguese_iterator():
-            for portuguese in portuguese_base:
-                yield portuguese
+        def Port_iterator():
+            """documentation"""
+            for Port in PortBase:
+                yield Port
 
         tokenizer_port = transformers.BertTokenizerFast.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
         )
 
-        english_tokenizer = transformers.BertTokenizerFast.from_pretrained(
+        Eng_tokenizer = transformers.BertTokenizerFast.from_pretrained(
             "bert-base-uncased"
         )
 
+        # ? what is vocab_size doing here
         vocab_size = 2**13
 
-        english_model_trained = english_tokenizer.train_new_from_iterator(
-            text_iterator=english_itorrater(),
+        Eng_model_trained = Eng_tokenizer.train_new_from_iterator(
+            text_iterator=Eng_itorrater(),
             vocab_size=vocab_size
         )
-        portuguese_model_trained = tokenizer_port.train_new_from_iterator(
-            text_iterator=portuguese_iterator(),
+        Port_model_trained = tokenizer_port.train_new_from_iterator(
+            text_iterator=Port_iterator(),
             vocab_size=vocab_size
         )
 
-        return english_model_trained, portuguese_model_trained
+        return Eng_model_trained, Port_model_trained
