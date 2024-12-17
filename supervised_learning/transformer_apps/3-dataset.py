@@ -24,36 +24,32 @@ class Dataset:
             self.data_train)
 
         self.data_train = self.data_train.map(self.tf_encode)
-        self.data_train = self.data_train.filter(
-            lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len)
-        )
+        self.data_train = self.data_train.filter(lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len))
         self.data_train = self.data_train.cache()
         self.data_train = self.data_train.shuffle(buffer_size=20000)
-        self.data_train = self.data_train.padded_batch(batch_size, padded_shapes=([max_len], [max_len]))
-        self.data_train = self.data_train.prefetch(tf.data.experimental.AUTOTUNE)
+        self.data_train = self.data_train.padded_batch(batch_size, padded_shapes=([None], [None]))
+        self.data_train = self.data_train.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
         self.data_valid = self.data_valid.map(self.tf_encode)
-        self.data_valid = self.data_valid.filter(
-            lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len)
-        )
-        self.data_valid = self.data_valid.padded_batch(batch_size, padded_shapes=([max_len], [max_len]))
+        self.data_valid = self.data_valid.filter(lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len))
+        self.data_valid = self.data_valid.padded_batch(batch_size, padded_shapes=([None], [None]))
 
     def tokenize_dataset(self, data):
-        """Documentation"""
+        """documentation"""
 
         en_base = []
         pt_base = []
 
-        for en, pt in data:
-            en_base.append(en.numpy().decode("utf-8"))
+        for pt, en in data:
             pt_base.append(pt.numpy().decode("utf-8"))
+            en_base.append(en.numpy().decode("utf-8"))
 
         def en_iterator():
-            """documentation"""
+            """Yields English sentences"""
             yield from en_base
 
         def pt_iterator():
-            """documentation"""
+            """Yields Portuguese sentences"""
             yield from pt_base
 
         tokenizer_pt = transformers.BertTokenizerFast.from_pretrained(
@@ -76,22 +72,22 @@ class Dataset:
         return pt_model_trained, en_model_trained
 
     def encode(self, pt, en):
-        """Documentation"""
+        """Encode Portuguese and English sentences into token IDs"""
 
         pt_tokens = self.tokenizer_pt.encode(pt.numpy().decode("utf-8"))
-        en_tokens = self.tokenizer_pt.encode(en.numpy().decode("utf-8"))
+        en_tokens = self.tokenizer_en.encode(en.numpy().decode("utf-8"))
 
         pt_tokens = [self.tokenizer_pt.vocab_size] + pt_tokens + [self.tokenizer_pt.vocab_size + 1]
         en_tokens = [self.tokenizer_en.vocab_size] + en_tokens + [self.tokenizer_en.vocab_size + 1]
 
-        return np.array(pt_tokens), np.array(en_tokens)
+        return pt_tokens, en_tokens
 
     def tf_encode(self, pt, en):
-        """Documentation"""
+        """Apply encoding to the dataset using TensorFlow functions"""
 
         pt_tokens, en_tokens = tf.py_function(
-            func=self.encode,
-            inp=[pt, en],
+            func=self.encode, 
+            inp=[pt, en], 
             Tout=[tf.int64, tf.int64]
         )
 

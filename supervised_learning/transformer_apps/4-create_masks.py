@@ -3,21 +3,19 @@
 import tensorflow as tf
 
 
-class Dataset:
+def create_masks(inputs, target):
     """Documentation"""
+    encoder_mask = tf.cast(tf.math.equal(inputs, 0), tf.float32)
+    encoder_mask = encoder_mask[:, tf.newaxis, tf.newaxis, :]
 
-    def __init__(self):
-        """documentation"""
-        pass
+    seq_len_out = tf.shape(target)[1]
+    lookahead_mask = 1 - tf.linalg.band_part(tf.ones((seq_len_out, seq_len_out)), -1, 0)
 
-    def encode(self, pt, en):
-        """Documentation"""
-        pass
+    decoder_padding_mask = tf.cast(tf.math.equal(target, 0), tf.float32)
+    decoder_padding_mask = decoder_padding_mask[:, tf.newaxis, tf.newaxis, :]
 
-    def tf_encode(self, pt, en):
-        """Documentation"""
-        pass
+    combinded_mask = tf.maximum(decoder_padding_mask, lookahead_mask)
 
-    def create_masks(inputs, target):
-        """Documentation"""
-        pass
+    decoder_mask = encoder_mask
+
+    return encoder_mask, combinded_mask, decoder_mask
