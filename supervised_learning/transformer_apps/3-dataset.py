@@ -84,8 +84,14 @@ class Dataset:
         pt_tokens = self.tokenizer_pt.encode(pt.numpy().decode("utf-8"))
         en_tokens = self.tokenizer_en.encode(en.numpy().decode("utf-8"))
 
-        pt_tokens = [self.tokenizer_pt.vocab_size] + pt_tokens + [self.tokenizer_pt.vocab_size + 1]
-        en_tokens = [self.tokenizer_en.vocab_size] + en_tokens + [self.tokenizer_en.vocab_size + 1]
+        pt_tokens = [
+            self.tokenizer_pt.vocab_size, *pt_tokens, 
+            self.tokenizer_pt.vocab_size + 1
+        ]
+        en_tokens = [
+            self.tokenizer_en.vocab_size, *en_tokens, 
+            self.tokenizer_en.vocab_size + 1
+        ]
 
         return pt_tokens, en_tokens
 
