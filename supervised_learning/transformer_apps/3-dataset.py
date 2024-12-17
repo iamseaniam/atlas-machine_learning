@@ -85,11 +85,11 @@ class Dataset:
         en_tokens = self.tokenizer_en.encode(en.numpy().decode("utf-8"))
 
         pt_tokens = [
-            self.tokenizer_pt.vocab_size, *pt_tokens, 
+            self.tokenizer_pt.vocab_size, *pt_tokens,
             self.tokenizer_pt.vocab_size + 1
         ]
         en_tokens = [
-            self.tokenizer_en.vocab_size, *en_tokens, 
+            self.tokenizer_en.vocab_size, *en_tokens,
             self.tokenizer_en.vocab_size + 1
         ]
 
@@ -99,8 +99,8 @@ class Dataset:
         """Apply encoding to the dataset using TensorFlow functions"""
 
         pt_tokens, en_tokens = tf.py_function(
-            func=self.encode, 
-            inp=[pt, en], 
+            func=self.encode,
+            inp=[pt, en],
             Tout=[tf.int64, tf.int64]
         )
 
