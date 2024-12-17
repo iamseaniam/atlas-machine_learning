@@ -24,15 +24,22 @@ class Dataset:
             self.data_train)
 
         self.data_train = self.data_train.map(self.tf_encode)
-        self.data_train = self.data_train.filter(lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len))
+        self.data_train = self.data_train.filter(
+            lambda pt, en: tf.logical_and(
+                tf.size(pt) <= max_len, tf.size(en) <= max_len))
         self.data_train = self.data_train.cache()
         self.data_train = self.data_train.shuffle(buffer_size=20000)
-        self.data_train = self.data_train.padded_batch(batch_size, padded_shapes=([None], [None]))
-        self.data_train = self.data_train.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+        self.data_train = self.data_train.padded_batch(
+            batch_size, padded_shapes=([None], [None]))
+        self.data_train = self.data_train.prefetch
+        (buffer_size=tf.data.experimental.AUTOTUNE)
 
         self.data_valid = self.data_valid.map(self.tf_encode)
-        self.data_valid = self.data_valid.filter(lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len))
-        self.data_valid = self.data_valid.padded_batch(batch_size, padded_shapes=([None], [None]))
+        self.data_valid = self.data_valid.filter(
+            lambda pt, en: tf.logical_and
+            (tf.size(pt) <= max_len, tf.size(en) <= max_len))
+        self.data_valid = self.data_valid.padded_batch(
+            batch_size, padded_shapes=([None], [None]))
 
     def tokenize_dataset(self, data):
         """documentation"""
