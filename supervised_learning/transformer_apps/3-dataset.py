@@ -4,6 +4,7 @@
 import tensorflow_datasets as tfds
 import transformers
 import tensorflow as tf
+import numpy as np
 
 
 class Dataset:
@@ -24,7 +25,28 @@ class Dataset:
             self.data_train)
 
         self.data_train = self.data_train.map(self.tf_encode)
+        self.data_train = self.data_train.filter(
+            lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len)
+        )
+        self.data_train = self.data_train.cache()
+        self.data_train = self.data_train.shuffle(buffer_size=20000)
+        self.data_train = self.data_train.padded_batch(batch_size, padded_shapes=([max_len], [max_len]))
+        self.data_train = self.data_train.prefetch(tf.data.experimental.AUTOTUNE)
+
         self.data_valid = self.data_valid.map(self.tf_encode)
+        self.data_valid = self.data_valid.filter(
+            lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len)
+        )
+        self.data_valid = self.data_valid.padded_batch(batch_size, padded_shapes=([max_len], [max_len]))
+
+
+
+
+
+
+
+
+
 
     def tokenize_dataset(self, data):
         """Documentation"""
@@ -69,7 +91,10 @@ class Dataset:
         pt_tokens = self.tokenizer_pt.encode(pt.numpy().decode("utf-8"))
         en_tokens = self.tokenizer_pt.encode(en.numpy().decode("utf-8"))
 
-        return pt_tokens, en_tokens
+        pt_tokens = [self.tokenizer_pt.vocab_size] + pt_tokens + [self.tokenizer_pt.vocab_size + 1]
+        en_tokens = [self.tokenizer_en.vocab_size] + en_tokens + [self.tokenizer_en.vocab_size + 1]
+
+        return np.array(pt_tokens), np.array(en_tokens)
 
     def tf_encode(self, pt, en):
         """Documentation"""
