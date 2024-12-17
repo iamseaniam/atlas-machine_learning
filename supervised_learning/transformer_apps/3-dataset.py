@@ -4,7 +4,6 @@
 import tensorflow_datasets as tfds
 import transformers
 import tensorflow as tf
-import numpy as np
 
 
 class Dataset:
@@ -38,15 +37,6 @@ class Dataset:
             lambda pt, en: tf.logical_and(tf.size(pt) <= max_len, tf.size(en) <= max_len)
         )
         self.data_valid = self.data_valid.padded_batch(batch_size, padded_shapes=([max_len], [max_len]))
-
-
-
-
-
-
-
-
-
 
     def tokenize_dataset(self, data):
         """Documentation"""
