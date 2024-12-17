@@ -9,7 +9,8 @@ def create_masks(inputs, target):
     encoder_mask = encoder_mask[:, tf.newaxis, tf.newaxis, :]
 
     seq_len_out = tf.shape(target)[1]
-    lookahead_mask = 1 - tf.linalg.band_part(tf.ones((seq_len_out, seq_len_out)), -1, 0)
+    lookahead_mask = 1 - tf.linalg.band_part(
+        tf.ones((seq_len_out, seq_len_out)), -1, 0)
 
     decoder_padding_mask = tf.cast(tf.math.equal(target, 0), tf.float32)
     decoder_padding_mask = decoder_padding_mask[:, tf.newaxis, tf.newaxis, :]
