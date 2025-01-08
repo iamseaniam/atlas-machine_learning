@@ -29,7 +29,7 @@ def load_frozen_lake(desc=None, map_name=None, is_slippery=False):
 
     # just passing in the parameters to make function
     evn = gym.make('FrozenLake-v1',  # the module? Pretty sure
-                   desc=desc, 
+                   desc=desc,
                    map_name=map_name,
                    is_slippery=is_slippery
                    )
