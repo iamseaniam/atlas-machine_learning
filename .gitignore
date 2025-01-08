@@ -202,3 +202,4 @@ supervised_learning/qa_bot/ZendeskArticles/WorkingRemotely-SettingBoundaries.md
 supervised_learning/qa_bot/ZendeskArticles/WorkingRemotely-TimeManagement.md
 supervised_learning/qa_bot/__pycache__/3-semantic_search.cpython-39.pyc
 supervised_learning/qa_bot/__pycache__/2-qa.cpython-39.pyc
+reinforcement_learning/q_learning/__pycache__/0-load_env.cpython-39.pyc
