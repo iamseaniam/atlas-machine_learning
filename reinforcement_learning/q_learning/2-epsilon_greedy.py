@@ -5,7 +5,7 @@ import numpy as np
 
 def epsilon_greedy(Q, state, epsilon):
     """Documentation"""
-    p = np.random.uniform(0,1) # numbers between 1 and 0
+    p = np.random.uniform(0, 1)  # numbers between 1 and 0
 
     if p < epsilon:
         # ! (Q.shape[1]) is grabbing column ie possible action
