@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""documentation"""
+import numpy as np
+
+
 def play(env, Q, max_steps=100):
     """Plays an episode using the trained Q-table"""
     state = env.reset()
