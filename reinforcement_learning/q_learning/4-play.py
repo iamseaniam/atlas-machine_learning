@@ -2,25 +2,31 @@
 """documentation"""
 import numpy as np
 
-
 def play(env, Q, max_steps=100):
     """Plays an episode using the trained Q-table"""
-    state = env.reset()
+    rendered_output = []
     total_reward = 0
-    rendered_outputs = []
 
-    for step in range(max_steps):
+    state = env.reset()[0]
+    rendered_output.append(env.render())
+
+    terminated, truncated = False, False
+    step_counter = 0
+
+    while not terminated and not truncated:
         action = np.argmax(Q[state, :])
-        state, reward, done, _ = env.step(action)
-        total_reward += reward
 
-        # Render the current state of the environment
-        rendered_outputs.append(env.render())
+        new_state, reward, terminated, truncated, _ = env.step(action)
 
-        if done:
+        step_counter += 1
+
+        state = new_state
+
+        rendered_output.append(env.render())
+
+        if step_counter >= max_steps:
             break
 
-    # Ensure the final state is displayed
-    rendered_outputs.append(env.render())
-    
-    return total_reward, rendered_outputs
+    env.close()
+
+    return reward, rendered_output
