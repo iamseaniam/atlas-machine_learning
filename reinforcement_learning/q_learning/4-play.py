@@ -2,6 +2,7 @@
 """documentation"""
 import numpy as np
 
+
 def play(env, Q, max_steps=100):
     """Plays an episode using the trained Q-table"""
     rendered_output = []
@@ -16,6 +17,7 @@ def play(env, Q, max_steps=100):
     while not terminated and not truncated:
         action = np.argmax(Q[state, :])
 
+        # i feel like i mess this line up, dumbo errors
         new_state, reward, terminated, truncated, _ = env.step(action)
 
         step_counter += 1
