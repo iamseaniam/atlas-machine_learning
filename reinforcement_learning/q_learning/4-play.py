@@ -9,7 +9,7 @@ def play(env, Q, max_steps=100):
     total_reward = 0
 
     state = env.reset()[0]
-    rendered_output.append(env.render())
+    rendered_output.append(env.render(render_mode="ansi"))
 
     terminated, truncated = False, False
     step_counter = 0
@@ -25,7 +25,7 @@ def play(env, Q, max_steps=100):
 
         state = new_state
 
-        rendered_output.append(env.render())
+        rendered_output.append(env.render(render_mode="ansi"))
 
         if step_counter >= max_steps:
             break
