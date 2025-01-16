@@ -21,6 +21,7 @@ def play(env, Q, max_steps=100):
         new_state, reward, terminated, truncated, _ = env.step(action)
 
         step_counter += 1
+        total_reward += reward
 
         state = new_state
 
@@ -32,4 +33,4 @@ def play(env, Q, max_steps=100):
     env.close()
 
     # seeing if chmod will help checker
-    return reward, rendered_output
+    return total_reward, rendered_output
