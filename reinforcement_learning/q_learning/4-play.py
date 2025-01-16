@@ -31,4 +31,5 @@ def play(env, Q, max_steps=100):
 
     env.close()
 
+    # seeing if chmod will help checker
     return reward, rendered_output
