@@ -10,6 +10,8 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+print(device)
+
 enviroment = DQNBreakout(device=device, render_mode='human')
 
 model = AtariNet(nb_action=4)
@@ -20,7 +22,7 @@ model.load_the_model()
 
 agent = Agent(model=model,
               device=device,
-              epsilon=1.0,
+              epsilon=0.05,
               nb_warmup=5000,
               nb_actions=4,
               learning_rate=0.00001,
