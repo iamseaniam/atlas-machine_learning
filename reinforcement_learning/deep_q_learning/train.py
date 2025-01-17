@@ -1,22 +1,30 @@
 from breakout import *
 import os
-import torch
-from PIL import Image
-import numpy as np
-import gymnasium as gym
+from model import AtariNet
+from agent import Agent
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-enviroment = DQNBreakout(device=device, render_mode='human')
+enviroment = DQNBreakout(device=device)
 
-state = enviroment.reset()
+model = AtariNet(nb_action=4)
 
-for _ in range(100):
-    action = enviroment.action_space.sample()
+model.to(device)
 
-    state, reward, done, info = enviroment.step(action)
-    # ! dum error, it was numpy verison issue
+model.load_the_model()
+
+agent = Agent(model=model,
+              device=device,
+              epsilon=1.0,
+              nb_warmup=5000,
+              nb_actions=4,
+              learning_rate=0.00001,
+              memory_capacity=1000000,
+              batch_size=64)
+
+agent.train(env=enviroment, epochs=200000)
