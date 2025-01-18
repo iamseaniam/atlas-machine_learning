@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import os
 import h5py
-import numpy as np
 
 
 class AtariNet(nn.Module):
@@ -52,22 +51,15 @@ class AtariNet(nn.Module):
 
         return output
 
-    def save_the_model(self, weights_filename='models/latest.h5'):
+    def save_the_model(self, weights_filename='models/lastest.pt'):
         if not os.path.exists('models'):
             os.makedirs('models')
-        model_weights = {k: v.cpu().numpy()
-                         for k, v in self.state_dict().items()}
-        with h5py.File(weights_filename, 'w') as h5file:
-            for k, v in model_weights.items():
-                h5file.create_dataset(k, data=v)
-        print(f"Model successfully saved as {weights_filename}")
+        torch.save(self.state_dict(), weights_filename)
 
-    def load_the_model(self, weights_filename='models/latest.h5'):
+    def load_the_model(self, weights_filename='models/lastest.pt'):
         try:
-            with h5py.File(weights_filename, 'r') as h5file:
-                model_weights = {k: torch.tensor(
-                    np.array(v)) for k, v in h5file.items()}
-            self.load_state_dict(model_weights)
-            print(f"Successfully loaded weights from {weights_filename}")
-        except Exception as e:
-            print(f"Failed to load weights from {weights_filename}: {e}")
+            self.load_state_dict(torch.load(
+                weights_filename, weights_only=True))
+            print(f"Successfully loaded weights file {weights_filename}")
+        except:
+            print(f"No weights file available at {weights_filename}")
