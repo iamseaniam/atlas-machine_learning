@@ -2,6 +2,7 @@
 """Docuentation for monte_carlo.py"""
 
 import numpy as np
+# 2:28pm 1/28/25 CODE does not look like expected output ):
 
 
 def monte_carlo(env, V, policy, episodes=5000,
@@ -41,6 +42,6 @@ def monte_carlo(env, V, policy, episodes=5000,
 
             # update value function using incremtal forula
             # V(S_t) <- V(S_t) + a[G_t - V(S_t)]
-            V[state] += alpha * (G - V[state])
+            V[state] + alpha * (G - V[state])
 
     return V
