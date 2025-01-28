@@ -13,8 +13,14 @@ def monte_carlo(env, V, policy, episodes=5000,
         episode_data = []  # storing (state, reward)
 
         for step in range(max_steps):
+            # ! TypeError: unsupported operand type(s) for %: 'tuple' and 'int'
+            # # hopefully this will fix this error
+            if isinstance(state, tuple):
+                state = state[0]
             action = policy(state)  # choosing action using policy
-            next_state, reward, done, _ = env.step(action)  # taking action
+
+            # ! ValueError: too many values to unpack (expected 4)
+            next_state, reward, done, _, _ = env.step(action)  # taking action
             episode_data.append((state, reward))  # recording (state, reward)
 
             if done:
