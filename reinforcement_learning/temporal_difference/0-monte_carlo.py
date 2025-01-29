@@ -3,6 +3,7 @@
 
 import numpy as np
 # 2:28pm 1/28/25 CODE does not look like expected output ):
+# 2:31 1/28/25 CODE just ouputs a 8x8 array of ones
 
 
 def monte_carlo(env, V, policy, episodes=5000,
@@ -38,10 +39,10 @@ def monte_carlo(env, V, policy, episodes=5000,
         # makes loop step backwards
         for t in range(len(episode_data) - 1, -1, -1):
             state, reward = episode_data[t]
-            G = reward + gamma * G  # compute return
+            G = gamma * G + reward  # compute return
 
             # update value function using incremtal forula
             # V(S_t) <- V(S_t) + a[G_t - V(S_t)]
-            V[state] + alpha * (G - V[state])
+            V[state] += alpha * (G - V[state])
 
     return V
