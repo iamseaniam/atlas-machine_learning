@@ -243,3 +243,5 @@ models/lastest.pt
 models/lastest.pt
 reinforcement_learning/temporal_difference/__pycache__/0-monte_carlo.cpython-39.pyc
 reinforcement_learning/temporal_difference/__pycache__/0-monte_carlo.cpython-39.pyc
+reinforcement_learning/temporal_difference/__pycache__/1-td_lambtha.cpython-39.pyc
+reinforcement_learning/temporal_difference/__pycache__/0-monte_carlo.cpython-39.pyc

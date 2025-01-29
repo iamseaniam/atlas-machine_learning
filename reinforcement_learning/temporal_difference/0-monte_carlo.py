@@ -25,12 +25,15 @@ def monte_carlo(env, V, policy, episodes=5000,
     returns = {s: [] for s in range(num_states)}
 
     for episodes in range(episodes):
-        state = env.reset()
+        state, _ = env.reset()
         episode_data = []  # storing (state, reward)
         for step in range(max_steps):
+            if isinstance(state, tuple):
+                state = state[0]  # Extract integer if state is a tuple
             action = policy(state)  # choosing action using policy
-            next_state, reward, done, _, _ = env.step(
+            next_state, reward, terminated, truncated, _ = env.step(
                 action)  # taking action
+            done = terminated or truncated
             episode_data.append((state, reward))  # recording (state, reward)
             state = next_state
             if done:
