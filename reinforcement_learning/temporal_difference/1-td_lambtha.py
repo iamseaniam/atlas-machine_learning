@@ -7,8 +7,6 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000, max_steps=100, alpha=0.1,
     """documentation"""
     for episode in range(episodes):
         state, _ = env.reset()
-        if isinstance(state, tuple):
-            state = state[0]
         eligibility = np.zeros_like(V)
 
         for step in range(max_steps):
