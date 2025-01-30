@@ -11,7 +11,10 @@ def policy(matrix, weight):
 
 
 def policy_gradient(state, weight):
-    """Compute the Monte-Carlo policy gradient based on a state and a weight matrix."""
+    """
+    Compute the Monte-Carlo policy gradient
+    based on a state and a weight matrix.
+    """
     probs = policy(state, weight)
     action = np.random.choice(len(probs), p=probs)
     d_softmax = probs.copy()
