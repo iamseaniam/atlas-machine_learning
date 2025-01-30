@@ -57,10 +57,12 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98):
             discounted_rewards.insert(0, cumulative_reward)
 
         discounted_rewards = np.array(discounted_rewards)
-        discounted_rewards = (discounted_rewards - np.mean(discounted_rewards)) / \
+        discounted_rewards = (discounted_rewards - np.mean
+                              (discounted_rewards)) / \
             (np.std(discounted_rewards) + 1e-10)
 
-        for gradient, discounted_reward in zip(episode_gradients, discounted_rewards):
+        for gradient, discounted_reward in zip(episode_gradients,
+                                               discounted_rewards):
             weights += alpha * gradient * discounted_reward
 
         episode_score = sum(episode_rewards)
