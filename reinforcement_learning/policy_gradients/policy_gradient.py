@@ -16,5 +16,5 @@ def policy_gradient(state, weight):
     action = np.random.choice(len(probs), p=probs)
     d_softmax = probs.copy()
     d_softmax[action] -= 1
-    gradient = np.outer(state, d_softmax)
+    gradient = -np.outer(state, d_softmax)
     return action, gradient
