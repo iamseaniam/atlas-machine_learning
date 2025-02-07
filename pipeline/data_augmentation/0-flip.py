@@ -6,5 +6,4 @@ import tensorflow as tf
 
 def flip_image(image):
     """documentation"""
-    tf.image.flip_left_right(image)
-    return image
+    return tf.image.flip_left_right(image)
