@@ -3,6 +3,6 @@
 import pandas as pd
 
 
-def from_numpy(array):
+def flip_switch(df):
     """no idea yet"""
-    return pd.DataFrame(array)
+    pass

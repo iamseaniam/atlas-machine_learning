@@ -3,6 +3,6 @@
 import pandas as pd
 
 
-def from_numpy(array):
+def concat(df1, df2):
     """no idea yet"""
-    return pd.DataFrame(array)
+    pass

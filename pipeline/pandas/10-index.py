@@ -3,6 +3,6 @@
 import pandas as pd
 
 
-def from_numpy(array):
+def index(df):
     """no idea yet"""
-    return pd.DataFrame(array)
+    pass
