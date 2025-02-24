@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Documentaton"""
+"""Importing pandas for data analysis and manipulation"""
 import pandas as pd
 
 
 def from_file(filename, delimiter):
     """no idea yet"""
-    pass
+    pd.DataFrame = pd.read_csv(filename, delimiter=delimiter)
+    return pd.DataFrame

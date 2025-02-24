@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Documentaton"""
+"""Importing pandas for data analysis and manipulation"""
 import pandas as pd
 
 
