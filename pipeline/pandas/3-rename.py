@@ -4,13 +4,13 @@ import pandas as pd
 
 
 def rename(df):
-    """no idea yet"""
+    """Renames the Timestamp column to Datetime, converts it to datetime format, 
+    and returns only the Datetime and Close columns."""
 
-    df = pd.DataFrame
+    # Rename Timestamp to Datetime
+    df = df.rename(columns={"Timestamp": "Datetime"})
+    # converts timestamp values to datatime values
+    df["Datetime"] = pd.to_datetime(df["Datetime"])
 
-    # Renaming timestamp column to Datetime
-    # inplace modifies original pd.DataFrame when set to "True"
-    renamed_column = df.rename(columns={'Timestamp': 'Datetime'}, inplace=True)
-
-    pd.to_datetime(renamed_column)
-    df[['Datetime', 'Close']]
+    # Returns only required columns
+    return df[["Datatime", "Close"]]
