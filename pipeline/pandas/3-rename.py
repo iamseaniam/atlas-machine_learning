@@ -3,6 +3,14 @@
 import pandas as pd
 
 
-def from_numpy(array):
+def rename(df):
     """no idea yet"""
-    pass
+
+    df = pd.DataFrame
+
+    # Renaming timestamp column to Datetime
+    # inplace modifies original pd.DataFrame when set to "True"
+    renamed_column = df.rename(columns={'Timestamp': 'Datetime'}, inplace=True)
+
+    pd.to_datetime(renamed_column)
+    df[['Datetime', 'Close']]

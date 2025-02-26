@@ -250,3 +250,5 @@ reinforcement_learning/policy_gradients/__pycache__/train.cpython-39.pyc
 pipeline/pandas/0-main.py
 pipeline/pandas/1-main.py
 pipeline/pandas/0-main.py
+pipeline/pandas/coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv
+coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv
