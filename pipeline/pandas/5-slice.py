@@ -4,4 +4,9 @@
 
 def slice(df):
     """no idea yet"""
-    pass
+
+    grab_col = df[["High", "Low", "Close", "Volume_BTC"]]
+
+    grab_row = df[df[grab_col] % 60]
+
+    return grab_row
