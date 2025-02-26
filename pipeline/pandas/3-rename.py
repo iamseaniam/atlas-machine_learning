@@ -13,6 +13,6 @@ def rename(df):
     df["Datetime"] = pd.to_datetime(df["Datetime"], unit="s")
 
     # Returns only required columns
-    df = df[["Datatime", "Close"]]
+    df = df[["Datetime", "Close"]]
 
     return df
