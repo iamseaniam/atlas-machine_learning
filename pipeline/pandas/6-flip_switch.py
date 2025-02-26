@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Checker Satisfaction"""
 
-import pandas as pd
-
 
 def flip_switch(df):
-    """no idea yet"""
-    sort_reverse = df.sort_values(na_position=[{'last', 'first'}])
+    """Function sorts data in reverse chrological order.
+    Transposes the sorted dataframe.
+    Returns: transformed pd.DataFrame."""
+
+    sort_reverse = df.sort_values(by=['Timestamp'], ascending=False)
 
     tranpose = sort_reverse.transpose()
 
