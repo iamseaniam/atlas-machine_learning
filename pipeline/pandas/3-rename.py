@@ -10,9 +10,10 @@ def rename(df):
     # Rename Timestamp to Datetime
     df = df.rename(columns={"Timestamp": "Datetime"})
     # converts timestamp values to datatime values
-    df["Datetime"] = pd.to_datetime(df["Datetime"], unit="s")
+    df["Datetime"] = pd.to_datetime(df["Datetime"])
 
     # Returns only required columns
+    # also do not forget to return datetime, not datatime
     df = df[["Datetime", "Close"]]
 
     return df
