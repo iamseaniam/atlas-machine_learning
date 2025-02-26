@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Importing pandas for data analysis and manipulation"""
+"""Checker Satisfaction"""
 
 
 def prune(df):
-    """no idea yet"""
-    pass
+    """Removes any entries where "Close" has NaN values"""
+    remove_NaN = df.dropna(subset=['Close'])
+
+    return remove_NaN
