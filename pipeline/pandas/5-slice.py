@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Importing pandas for data analysis and manipulation"""
+"""Checker Satisfaction"""
 
 
 def slice(df):
-    """no idea yet"""
+    """Function grabs columns, every 60th row for columns.
+    returns new sliced pd.DataFrame"""
 
-    grab_col = df[["High", "Low", "Close", "Volume_BTC"]]
+    grab_col = df[["High", "Low", "Close", "Volume_(BTC)"]]
 
-    grab_row = df[df[grab_col] % 60]
+    grab_row = grab_col.iloc[::60, :]
 
     return grab_row
