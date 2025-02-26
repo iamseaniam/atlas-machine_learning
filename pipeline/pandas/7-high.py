@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Importing pandas for data analysis and manipulation"""s
+"""Checker Satisfaction"""
 
 
 def high(df):
     """no idea yet"""
-    pass
+    sort_desc = df.sort_values(by=['High'], ascending=False)
+
+    return sort_desc
