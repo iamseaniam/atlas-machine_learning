@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Not importing anything. checker has the imports"""
+"""Not implorting anything. checker has the implorts"""
+# can't say the word imp ort. they are watching
 
 
 def array(df):
