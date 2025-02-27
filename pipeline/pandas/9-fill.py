@@ -10,7 +10,7 @@ def fill(df):
 
     filled_df = df.drop('Weighted_Price', axis=1)
 
-    filled_df.loc[:, ["Close"]] = filled_df.loc[: ["Close"]].ffill()
+    filled_df.loc[:, ["Close"]] = filled_df.loc[:, ["Close"]].ffill()
 
     filled_df.loc["High"] = filled_df["High"].fillna(filled_df["Close"])
 
