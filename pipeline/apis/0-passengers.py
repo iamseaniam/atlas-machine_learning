@@ -11,18 +11,18 @@ def availableShips(passengerCount):
     while url:
         response = requests.get(url)
         if response.status_code != 200:
-            return []  # Return empty list if API request fails
+            return []
 
         data = response.json()
         for ship in data["results"]:
             try:
                 capacity = ship["passengers"].replace(
-                    ",", "")  # Handle numbers with commas
+                    ",", "")
                 if capacity.isdigit() and int(capacity) >= passengerCount:
                     ships.append(ship["name"])
             except (KeyError, ValueError):
-                continue  # Skip ships with missing or invalid passenger data
+                continue
 
-        url = data["next"]  # Move to next page if available
+        url = data["next"]
 
     return ships
