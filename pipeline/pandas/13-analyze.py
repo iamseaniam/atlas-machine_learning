@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Importing pandas for data analysis and manipulation"""
+"""Checker Satisfaction"""
 
 
 def analyze(df):
-    """no idea yet"""
-    pass
+    """function does computive descriptive statistics for all columns"""
+    stats = df[['Open', 'High', 'Low', 'Close',
+               'Volume_(BTC)', 'Weighted_Price']].describe()
+    return stats
