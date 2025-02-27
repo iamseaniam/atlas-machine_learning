@@ -6,4 +6,4 @@ index = __import__('10-index').index
 
 def concat(df1, df2):
     """no idea yet"""
-    pass
+    Multi_dex = df.set_index(['Time'])
