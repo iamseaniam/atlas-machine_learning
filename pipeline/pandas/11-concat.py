@@ -6,4 +6,11 @@ index = __import__('10-index').index
 
 def concat(df1, df2):
     """no idea yet"""
-    Multi_dex = df.set_index(['Time'])
+    df1.set_index('Timestamp', inplace=True)
+    df2.set_index('Timestamp', inplace=True)
+
+    df2_selected = df2.loc[:1417411920]
+
+    df_conCAT = pd.concat([df2_selected, df1], keys=['bitstamp', 'coinbase'])
+
+    return df_conCAT
