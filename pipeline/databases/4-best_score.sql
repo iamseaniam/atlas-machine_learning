@@ -1,3 +1,4 @@
+-- seclects columns, sorts score by desc
 SELECT score, name
 FROM second_table
 WHERE score >= 10
