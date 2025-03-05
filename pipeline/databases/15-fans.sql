@@ -1,6 +1,6 @@
 -- ranks country origins of bands
-SELECT origin, COALESCE(SUM(nb_fans), 0) AS total_fans
+SELECT origin, COALESCE(SUM(nb_fans), 0) AS nb_fans
 FROM metal_bands
 GROUP BY origin
-ORDER BY total_fans DESC;
+ORDER BY nb_fans DESC;
 
